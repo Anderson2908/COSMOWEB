@@ -1,0 +1,11 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/cgv/page": "/cgv",
+  "/mentions-legales/page": "/mentions-legales",
+  "/packs/confort/page": "/packs/confort",
+  "/packs/premium/page": "/packs/premium",
+  "/packs/starter/page": "/packs/starter",
+  "/page": "/",
+  "/politique-confidentialite/page": "/politique-confidentialite"
+}
