@@ -1,40 +1,92 @@
 "use client"
 
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useRef, useCallback } from "react"
 
 export function CursorGlow() {
-  const [position, setPosition] = useState({ x: 0, y: 0 })
-  const [isVisible, setIsVisible] = useState(false)
+  const glowRef = useRef<HTMLDivElement>(null)
   const targetPosition = useRef({ x: 0, y: 0 })
-  const animationFrame = useRef<number>()
+  const currentPosition = useRef({ x: 0, y: 0 })
+  const animationFrame = useRef<number | null>(null)
+  const isAnimating = useRef(false)
+  const isVisible = useRef(false)
 
-  useEffect(() => {
-    // Animation fluide avec interpolation
-    const animate = () => {
-      setPosition(prev => ({
-        x: prev.x + (targetPosition.current.x - prev.x) * 0.08,
-        y: prev.y + (targetPosition.current.y - prev.y) * 0.08,
-      }))
-      animationFrame.current = requestAnimationFrame(animate)
+  const animate = useCallback(() => {
+    const dx = targetPosition.current.x - currentPosition.current.x
+    const dy = targetPosition.current.y - currentPosition.current.y
+    
+    // Si la différence est minime, arrêter l'animation pour économiser le CPU
+    if (Math.abs(dx) < 0.5 && Math.abs(dy) < 0.5) {
+      currentPosition.current = { ...targetPosition.current }
+      if (glowRef.current) {
+        glowRef.current.style.transform = `translate3d(${currentPosition.current.x}px, ${currentPosition.current.y}px, 0) translate(-50%, -50%)`
+      }
+      isAnimating.current = false
+      return
     }
 
+    // Interpolation fluide avec lerp factor réduit pour moins de calculs
+    currentPosition.current.x += dx * 0.15
+    currentPosition.current.y += dy * 0.15
+
+    // Manipulation directe du DOM avec translate3d pour accélération GPU
+    if (glowRef.current) {
+      glowRef.current.style.transform = `translate3d(${currentPosition.current.x}px, ${currentPosition.current.y}px, 0) translate(-50%, -50%)`
+    }
+
+    animationFrame.current = requestAnimationFrame(animate)
+  }, [])
+
+  const startAnimation = useCallback(() => {
+    if (!isAnimating.current) {
+      isAnimating.current = true
+      animationFrame.current = requestAnimationFrame(animate)
+    }
+  }, [animate])
+
+  useEffect(() => {
+    // Désactiver sur mobile/tablette et si l'utilisateur préfère moins de mouvement
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (isTouchDevice || prefersReducedMotion) return
+
     const handleMouseMove = (e: MouseEvent) => {
-      targetPosition.current = { x: e.pageX, y: e.pageY }
-      if (!isVisible) setIsVisible(true)
+      targetPosition.current = { x: e.clientX, y: e.clientY }
+      
+      if (!isVisible.current && glowRef.current) {
+        isVisible.current = true
+        glowRef.current.style.opacity = "1"
+      }
+      
+      startAnimation()
     }
 
     const handleMouseLeave = () => {
-      setIsVisible(false)
+      if (glowRef.current) {
+        isVisible.current = false
+        glowRef.current.style.opacity = "0"
+      }
+      // Arrêter l'animation quand la souris sort
+      if (animationFrame.current) {
+        cancelAnimationFrame(animationFrame.current)
+        isAnimating.current = false
+      }
     }
 
-    const handleMouseEnter = () => {
-      setIsVisible(true)
+    const handleMouseEnter = (e: MouseEvent) => {
+      // Initialiser la position immédiatement pour éviter un saut
+      targetPosition.current = { x: e.clientX, y: e.clientY }
+      currentPosition.current = { x: e.clientX, y: e.clientY }
+      
+      if (glowRef.current) {
+        isVisible.current = true
+        glowRef.current.style.opacity = "1"
+        glowRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`
+      }
     }
 
-    window.addEventListener("mousemove", handleMouseMove)
+    window.addEventListener("mousemove", handleMouseMove, { passive: true })
     document.body.addEventListener("mouseleave", handleMouseLeave)
     document.body.addEventListener("mouseenter", handleMouseEnter)
-    animationFrame.current = requestAnimationFrame(animate)
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove)
@@ -44,50 +96,32 @@ export function CursorGlow() {
         cancelAnimationFrame(animationFrame.current)
       }
     }
-  }, [isVisible])
+  }, [startAnimation])
 
   return (
     <div
-      className="pointer-events-none absolute top-0 left-0 w-full h-full z-50"
-      style={{ minHeight: "100vh" }}
+      className="pointer-events-none fixed inset-0 z-50 overflow-hidden"
       aria-hidden="true"
     >
-      {/* Lueur principale douce */}
+      {/* Lueur unique optimisée - utilise une seule div au lieu de deux */}
       <div
+        ref={glowRef}
         className="absolute"
         style={{
-          left: position.x,
-          top: position.y,
-          width: "1000px",
-          height: "1000px",
-          transform: "translate(-50%, -50%)",
-          background: `radial-gradient(circle, 
-            oklch(0.7 0.18 272 / 0.12) 0%, 
-            oklch(0.62 0.14 270 / 0.06) 30%, 
-            transparent 55%
-          )`,
-          opacity: isVisible ? 1 : 0,
-          transition: "opacity 0.5s ease-out",
-          filter: "blur(80px)",
-        }}
-      />
-      {/* Lueur centrale subtile */}
-      <div
-        className="absolute"
-        style={{
-          left: position.x,
-          top: position.y,
+          left: 0,
+          top: 0,
           width: "400px",
           height: "400px",
-          transform: "translate(-50%, -50%)",
-          background: `radial-gradient(circle, 
-            oklch(0.75 0.2 272 / 0.15) 0%, 
-            oklch(0.65 0.16 270 / 0.06) 35%, 
-            transparent 55%
+          background: `radial-gradient(circle at center, 
+            rgba(139, 92, 246, 0.12) 0%, 
+            rgba(99, 102, 241, 0.06) 30%, 
+            transparent 60%
           )`,
-          opacity: isVisible ? 1 : 0,
-          transition: "opacity 0.5s ease-out",
-          filter: "blur(40px)",
+          opacity: 0,
+          transition: "opacity 0.3s ease-out",
+          borderRadius: "50%",
+          willChange: "transform",
+          backfaceVisibility: "hidden",
         }}
       />
     </div>

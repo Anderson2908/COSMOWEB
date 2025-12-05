@@ -84,17 +84,14 @@ export function Features() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="group relative bg-[#111827]/60 backdrop-blur-sm rounded-2xl p-8 border border-[#1f2937] hover:border-[#6366f1]/50 transition-all duration-500 hover:scale-[1.02] hover:-translate-y-2 cursor-pointer overflow-hidden"
+              className="group relative bg-[#111827]/80 rounded-2xl p-8 border border-[#1f2937] hover:border-[#6366f1]/50 transition-colors duration-300 cursor-pointer overflow-hidden"
             >
-              {/* Lueur au hover */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#6366f1]/10 via-transparent to-[#818cf8]/10" />
-                <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#6366f1]/20 rounded-full blur-3xl" />
-              </div>
+              {/* Lueur au hover - simplifiée */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#6366f1]/5 via-transparent to-[#818cf8]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
               
               {/* Icône */}
-              <div className="relative size-12 rounded-xl bg-[#1a1a2e] border border-[#2a2a4e] group-hover:border-[#6366f1]/50 group-hover:bg-[#1a1a3e] flex items-center justify-center text-gray-400 mb-6 transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[#6366f1]/20">
-                <feature.icon className="size-6 transition-all duration-500 group-hover:text-[#818cf8] group-hover:scale-110" />
+              <div className="relative size-12 rounded-xl bg-[#1a1a2e] border border-[#2a2a4e] group-hover:border-[#6366f1]/50 flex items-center justify-center text-gray-400 mb-6 transition-colors duration-300">
+                <feature.icon className="size-6 transition-colors duration-300 group-hover:text-[#818cf8]" />
               </div>
               
               {/* Titre */}
@@ -124,22 +121,11 @@ export function Features() {
 
           {/* Étapes du processus */}
           <div className={`relative ${isVisible ? "animate-on-scroll-delay-3" : ""}`}>
-            {/* Ligne horizontale de connexion animée */}
+            {/* Ligne horizontale de connexion - animation unique au chargement */}
             <div className="hidden md:block absolute top-[60px] left-1/2 -translate-x-1/2 w-[60%] h-[2px] overflow-hidden">
               <div 
-                className="w-full h-full bg-gradient-to-r from-[#6366f1]/50 via-[#6366f1] to-[#6366f1]/50"
-                style={{
-                  animation: isVisible ? "line-draw 1.5s ease-out forwards" : "none",
-                  transform: "scaleX(0)",
-                }}
-              />
-              {/* Particule lumineuse qui voyage */}
-              <div 
-                className="absolute top-1/2 -translate-y-1/2 w-8 h-1 bg-white rounded-full blur-sm"
-                style={{
-                  animation: isVisible ? "particle-travel 3s ease-in-out infinite 1.5s" : "none",
-                  opacity: 0,
-                }}
+                className={`w-full h-full bg-gradient-to-r from-[#6366f1]/50 via-[#6366f1] to-[#6366f1]/50 origin-left ${isVisible ? 'scale-x-100' : 'scale-x-0'}`}
+                style={{ transition: 'transform 1s ease-out' }}
               />
             </div>
 
@@ -148,37 +134,27 @@ export function Features() {
               {processSteps.map((step, index) => (
                 <div 
                   key={index} 
-                  className="group flex flex-col items-center text-center"
-                  style={{
-                    animation: isVisible ? `step-appear 0.6s ease-out ${0.3 + index * 0.2}s forwards` : "none",
-                    opacity: 0,
-                    transform: "translateY(30px)",
-                  }}
+                  className={`group flex flex-col items-center text-center ${isVisible ? 'animate-on-scroll' : ''}`}
+                  style={{ animationDelay: isVisible ? `${0.3 + index * 0.15}s` : '0s' }}
                 >
-                  {/* Cercle avec icône */}
+                  {/* Cercle avec icône - hover seulement */}
                   <div
-                    className={`relative z-10 rounded-full flex items-center justify-center mb-8 transition-transform duration-500 group-hover:scale-110 ${
+                    className={`relative z-10 rounded-full flex items-center justify-center mb-8 transition-transform duration-300 group-hover:scale-105 ${
                       step.size === "large"
                         ? "size-32 bg-gradient-to-b from-[#2a2a5e] to-[#1a1a3e] border-2 border-[#6366f1]/50"
                         : "size-24 bg-[#1a1a2e] border border-[#2a2a4e] group-hover:border-[#6366f1]/50"
                     }`}
-                    style={{
-                      animation: isVisible ? `float ${3 + index * 0.5}s ease-in-out infinite ${index * 0.3}s` : "none",
-                    }}
                   >
-                    {/* Lueur pulsante derrière le cercle */}
+                    {/* Lueur statique au hover seulement */}
                     <div 
-                      className={`absolute inset-0 rounded-full ${
-                        step.size === "large" ? "bg-[#6366f1]/30" : "bg-[#6366f1]/20"
+                      className={`absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+                        step.size === "large" ? "bg-[#6366f1]/20" : "bg-[#6366f1]/15"
                       }`}
-                      style={{
-                        animation: isVisible ? `pulse-glow 2s ease-in-out infinite ${index * 0.4}s` : "none",
-                        filter: "blur(20px)",
-                      }}
+                      style={{ filter: "blur(15px)" }}
                     />
 
                     <step.icon
-                      className={`relative z-10 transition-all duration-300 group-hover:scale-110 ${
+                      className={`relative z-10 transition-colors duration-300 ${
                         step.size === "large" ? "size-10 text-[#818cf8] group-hover:text-white" : "size-8 text-[#6366f1] group-hover:text-[#818cf8]"
                       }`}
                     />

@@ -140,8 +140,8 @@ export function ProjectForm({ open, onOpenChange }: ProjectFormProps) {
                 <div className="flex items-center space-x-3 border border-[#1f2937] rounded-xl p-4 hover:border-[#6366f1]/50 cursor-pointer transition-colors bg-[#111827]/50">
                   <RadioGroupItem value="ecommerce" id="ecommerce" className="border-[#6366f1] text-[#6366f1]" />
                   <Label htmlFor="ecommerce" className="flex-1 cursor-pointer">
-                    <div className="font-semibold text-white">Site E-commerce</div>
-                    <div className="text-sm text-gray-400">Vendez vos produits en ligne</div>
+                    <div className="font-semibold text-white">Site</div>
+                    <div className="text-sm text-gray-400">Vendez vos produits et services en ligne</div>
                   </Label>
                 </div>
               </RadioGroup>

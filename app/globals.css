@@ -135,15 +135,21 @@
   }
 }
 
-/* Ajout des animations de scroll */
+/* Optimisation GPU pour les animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Ajout des animations de scroll - optimisées */
 @keyframes fade-in-up {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translate3d(0, 20px, 0);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -158,22 +164,26 @@
 
 .animate-on-scroll {
   opacity: 0;
-  animation: fade-in-up 0.8s ease-out forwards;
+  animation: fade-in-up 0.6s ease-out forwards;
+  will-change: transform, opacity;
 }
 
 .animate-on-scroll-delay-1 {
   opacity: 0;
-  animation: fade-in-up 0.8s ease-out 0.1s forwards;
+  animation: fade-in-up 0.6s ease-out 0.1s forwards;
+  will-change: transform, opacity;
 }
 
 .animate-on-scroll-delay-2 {
   opacity: 0;
-  animation: fade-in-up 0.8s ease-out 0.2s forwards;
+  animation: fade-in-up 0.6s ease-out 0.2s forwards;
+  will-change: transform, opacity;
 }
 
 .animate-on-scroll-delay-3 {
   opacity: 0;
-  animation: fade-in-up 0.8s ease-out 0.3s forwards;
+  animation: fade-in-up 0.6s ease-out 0.3s forwards;
+  will-change: transform, opacity;
 }
 
 /* Animations pour la section "Simple comme 1, 2, 3" */
@@ -186,64 +196,52 @@
   }
 }
 
-@keyframes particle-travel {
-  0% {
-    left: -5%;
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    left: 105%;
-    opacity: 0;
-  }
-}
-
 @keyframes step-appear {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translate3d(0, 20px, 0);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
-@keyframes float {
+/* Animations légères optimisées - transform seulement */
+@keyframes float-subtle {
   0%, 100% {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translate3d(0, -6px, 0);
   }
 }
 
-@keyframes pulse-glow {
+@keyframes pulse-subtle {
   0%, 100% {
-    opacity: 0.5;
-    transform: scale(1);
+    opacity: 0.4;
   }
   50% {
-    opacity: 1;
-    transform: scale(1.2);
+    opacity: 0.7;
   }
 }
 
-@keyframes bounce-in {
-  0% {
-    opacity: 0;
-    transform: scale(0);
+/* Support prefers-reduced-motion - désactive toutes les animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
+  
+  .animate-on-scroll,
+  .animate-on-scroll-delay-1,
+  .animate-on-scroll-delay-2,
+  .animate-on-scroll-delay-3 {
     opacity: 1;
-    transform: scale(1);
+    transform: none;
+    animation: none;
   }
 }

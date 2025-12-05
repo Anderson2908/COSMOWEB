@@ -42,27 +42,25 @@ export function Hero() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up [animation-delay:300ms] pt-4">
             <Button
               size="lg"
-              className="relative text-lg px-8 py-7 bg-white text-[#0a0a14] font-semibold rounded-full group min-w-[220px] overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] active:scale-95"
+              className="relative text-lg px-8 py-7 bg-white text-[#0a0a14] font-semibold rounded-full group min-w-[220px] overflow-hidden transition-colors duration-200 hover:bg-[#c4b5fd] active:scale-95"
               onClick={() => setShowForm(true)}
             >
               <span className="relative z-10 flex items-center">
                 Lancer mon projet
-                <ArrowRight className="ml-2 size-5 group-hover:translate-x-2 transition-transform duration-300" />
+                <ArrowRight className="ml-2 size-5 group-hover:translate-x-1 transition-transform duration-200" />
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-[#c4b5fd] to-[#a78bfa] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="relative text-lg px-8 py-7 bg-[#1a1a2e] text-white border-2 border-[#2a2a4e] rounded-full min-w-[220px] overflow-hidden transition-all duration-300 hover:scale-105 hover:border-[#6366f1] hover:shadow-[0_0_30px_rgba(99,102,241,0.3)] active:scale-95 group"
+              className="relative text-lg px-8 py-7 bg-[#1a1a2e] text-white border-2 border-[#2a2a4e] rounded-full min-w-[220px] overflow-hidden transition-colors duration-200 hover:border-[#6366f1] hover:bg-[#1a1a3e] active:scale-95 group"
               onClick={() => {
                 document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })
               }}
             >
-              <span className="relative z-10 transition-colors duration-300 group-hover:text-[#c4b5fd]">
+              <span className="relative z-10 transition-colors duration-200 group-hover:text-[#c4b5fd]">
                 Comment ça marche ?
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/20 to-[#818cf8]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </Button>
           </div>
 

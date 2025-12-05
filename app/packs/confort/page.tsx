@@ -16,7 +16,7 @@ export default function ConfortPackPage() {
   return (
     <div className="min-h-screen bg-[#0a0a14]">
       {/* Header with back button */}
-      <div className="border-b border-[#1f2937] bg-[#0a0a14]/80 backdrop-blur-lg sticky top-0 z-50">
+      <div className="border-b border-[#1f2937] bg-[#0a0a14]/95 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <Link href="/#pricing">
             <Button variant="ghost" className="gap-2 text-gray-300 hover:text-white hover:bg-[#1f2937]">
@@ -301,9 +301,9 @@ export default function ConfortPackPage() {
                 Commander le Pack Confort
               </Button>
               <Button size="lg" variant="outline" className="text-lg px-8 border-[#6366f1] text-[#a5b4fc] bg-transparent hover:bg-[#6366f1]/10 rounded-full" asChild>
-                <a href="https://calendly.com/sitelabagency" target="_blank" rel="noopener noreferrer">
+                <a href="https://calendly.com/contact-agence-cosmoweb/30min" target="_blank" rel="noopener noreferrer">
                   <Phone className="mr-2 size-5" />
-                  Prendre un RDV
+                  Réserver un appel
                 </a>
               </Button>
             </div>

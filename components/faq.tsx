@@ -66,7 +66,7 @@ export function FAQ() {
           {faqData.map((item, index) => (
             <div
               key={index}
-              className="bg-[#111827]/40 backdrop-blur-sm border border-[#1f2937] rounded-2xl overflow-hidden transition-all duration-300 hover:border-[#374151]"
+              className="bg-[#111827]/70 border border-[#1f2937] rounded-2xl overflow-hidden transition-colors duration-200 hover:border-[#374151]"
             >
               <button
                 onClick={() => toggleQuestion(index)}

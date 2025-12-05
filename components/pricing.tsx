@@ -106,10 +106,10 @@ export function Pricing() {
             return (
               <div
                 key={pack.id}
-                className={`group relative flex flex-col backdrop-blur-sm rounded-2xl p-8 border cursor-pointer transition-[border-color,box-shadow,transform] duration-300 ${
+                className={`group relative flex flex-col rounded-2xl p-8 border cursor-pointer transition-colors duration-200 ${
                   pack.popular
-                    ? "bg-[#111827]/80 border-[#6366f1] shadow-2xl shadow-[#6366f1]/20 scale-[1.02] hover:shadow-[0_0_50px_rgba(99,102,241,0.3)]"
-                    : "bg-[#111827]/60 border-[#1f2937] hover:border-[#6366f1]/50 hover:shadow-xl hover:shadow-[#6366f1]/15"
+                    ? "bg-[#111827]/90 border-[#6366f1] shadow-lg shadow-[#6366f1]/10"
+                    : "bg-[#111827]/80 border-[#1f2937] hover:border-[#6366f1]/50"
                 }`}
               >
                 {/* Lueur au hover */}
@@ -172,7 +172,7 @@ export function Pricing() {
 
         {/* Maintenance & Sérénité */}
         <div className={`mt-16 ${isVisible ? "animate-on-scroll-delay-2" : ""}`}>
-          <div className="bg-[#111827]/60 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-[#6366f1]/30">
+          <div className="bg-[#111827]/90 rounded-2xl p-8 md:p-10 border border-[#6366f1]/30">
             <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
               {/* Left content */}
               <div className="flex-1">

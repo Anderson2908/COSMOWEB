@@ -62,7 +62,7 @@ export function About() {
           </div>
 
           {/* Encadré "Pourquoi nous choisir ?" */}
-          <div className={`bg-[#111827]/80 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-[#1f2937] ${isVisible ? "animate-on-scroll-delay-2" : ""}`}>
+          <div className={`bg-[#111827]/90 rounded-2xl p-8 md:p-10 border border-[#1f2937] ${isVisible ? "animate-on-scroll-delay-2" : ""}`}>
             <h3 className="text-2xl font-bold text-white mb-6">Pourquoi nous choisir ?</h3>
             
             <p className="text-gray-400 leading-relaxed mb-6">

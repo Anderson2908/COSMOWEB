@@ -170,9 +170,9 @@ export function PackForm({ open, onOpenChange, packName }: PackFormProps) {
                 En attendant, vous pouvez prendre rendez-vous directement avec un conseiller :
               </p>
               <Button asChild size="lg" className="w-full bg-gradient-to-r from-[#6366f1] to-[#818cf8] hover:opacity-90 text-white rounded-full">
-                <a href="https://calendly.com/sitelabagency" target="_blank" rel="noopener noreferrer">
+                <a href="https://calendly.com/contact-agence-cosmoweb/30min" target="_blank" rel="noopener noreferrer">
                   <Calendar className="mr-2 size-5" />
-                  Prendre rendez-vous maintenant
+                  Réserver un appel
                 </a>
               </Button>
             </div>
