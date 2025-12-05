@@ -11,7 +11,7 @@ import { ArrowRight, ArrowLeft, Check, Loader2 } from "lucide-react"
 
 type ProjectType = "portfolio" | "vitrine" | "ecommerce" | ""
 type TeamSize = "1" | "2-5" | "6-10" | "10+" | ""
-type Budget = "<2000" | "2000-5000" | "5000-10000" | "10000+" | ""
+type Budget = "<800" | "800-1000" | "1000-1200" | "1200+" | ""
 
 interface ProjectFormProps {
   open: boolean
@@ -203,27 +203,27 @@ export function ProjectForm({ open, onOpenChange }: ProjectFormProps) {
               <Label className="text-lg font-semibold text-white">Quel est votre budget ?</Label>
               <RadioGroup value={budget} onValueChange={(value) => setBudget(value as Budget)}>
                 <div className="flex items-center space-x-3 border border-[#1f2937] rounded-xl p-4 hover:border-[#6366f1]/50 cursor-pointer transition-colors bg-[#111827]/50">
-                  <RadioGroupItem value="<2000" id="<2000" className="border-[#6366f1] text-[#6366f1]" />
-                  <Label htmlFor="<2000" className="flex-1 cursor-pointer text-white">
-                    Moins de 2 000 €
+                  <RadioGroupItem value="<800" id="<800" className="border-[#6366f1] text-[#6366f1]" />
+                  <Label htmlFor="<800" className="flex-1 cursor-pointer text-white">
+                    Moins de 800 €
                   </Label>
                 </div>
                 <div className="flex items-center space-x-3 border border-[#1f2937] rounded-xl p-4 hover:border-[#6366f1]/50 cursor-pointer transition-colors bg-[#111827]/50">
-                  <RadioGroupItem value="2000-5000" id="2000-5000" className="border-[#6366f1] text-[#6366f1]" />
-                  <Label htmlFor="2000-5000" className="flex-1 cursor-pointer text-white">
-                    2 000 € - 5 000 €
+                  <RadioGroupItem value="800-1000" id="800-1000" className="border-[#6366f1] text-[#6366f1]" />
+                  <Label htmlFor="800-1000" className="flex-1 cursor-pointer text-white">
+                    800 € - 1 000 €
                   </Label>
                 </div>
                 <div className="flex items-center space-x-3 border border-[#1f2937] rounded-xl p-4 hover:border-[#6366f1]/50 cursor-pointer transition-colors bg-[#111827]/50">
-                  <RadioGroupItem value="5000-10000" id="5000-10000" className="border-[#6366f1] text-[#6366f1]" />
-                  <Label htmlFor="5000-10000" className="flex-1 cursor-pointer text-white">
-                    5 000 € - 10 000 €
+                  <RadioGroupItem value="1000-1200" id="1000-1200" className="border-[#6366f1] text-[#6366f1]" />
+                  <Label htmlFor="1000-1200" className="flex-1 cursor-pointer text-white">
+                    1 000 € - 1 200 €
                   </Label>
                 </div>
                 <div className="flex items-center space-x-3 border border-[#1f2937] rounded-xl p-4 hover:border-[#6366f1]/50 cursor-pointer transition-colors bg-[#111827]/50">
-                  <RadioGroupItem value="10000+" id="10000+" className="border-[#6366f1] text-[#6366f1]" />
-                  <Label htmlFor="10000+" className="flex-1 cursor-pointer text-white">
-                    Plus de 10 000 €
+                  <RadioGroupItem value="1200+" id="1200+" className="border-[#6366f1] text-[#6366f1]" />
+                  <Label htmlFor="1200+" className="flex-1 cursor-pointer text-white">
+                    Plus de 1 200 €
                   </Label>
                 </div>
               </RadioGroup>

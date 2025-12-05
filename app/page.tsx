@@ -21,8 +21,8 @@ export default function Home() {
       <About />
       <Features />
       <Pricing />
-      <FAQ />
       <ContactSection />
+      <FAQ />
       <Footer />
       <ProjectForm open={isFormOpen} onOpenChange={setIsFormOpen} />
     </main>
