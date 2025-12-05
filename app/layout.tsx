@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono, Playfair_Display } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { CursorGlow } from "@/components/cursor-glow"
 import "./globals.css"
 
 const _geist = Geist({ subsets: ["latin"] })
@@ -45,7 +46,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={`${_playfairDisplay.variable} font-sans antialiased`}>
+      <body className={`${_playfairDisplay.variable} font-sans antialiased relative`}>
+        <CursorGlow />
         {children}
         <Analytics />
       </body>

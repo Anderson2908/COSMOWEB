@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { ArrowRight, ArrowLeft, Check } from "lucide-react"
+import { ArrowRight, ArrowLeft, Check, Loader2 } from "lucide-react"
 
 type ProjectType = "portfolio" | "vitrine" | "ecommerce" | ""
 type TeamSize = "1" | "2-5" | "6-10" | "10+" | ""
@@ -27,6 +27,7 @@ export function ProjectForm({ open, onOpenChange }: ProjectFormProps) {
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
   const [submitted, setSubmitted] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const resetForm = () => {
     setStep(1)
@@ -37,6 +38,7 @@ export function ProjectForm({ open, onOpenChange }: ProjectFormProps) {
     setEmail("")
     setPhone("")
     setSubmitted(false)
+    setIsLoading(false)
   }
 
   const handleClose = (open: boolean) => {
@@ -46,25 +48,53 @@ export function ProjectForm({ open, onOpenChange }: ProjectFormProps) {
     onOpenChange(open)
   }
 
-  const handleSubmit = () => {
-    console.log({ projectType, teamSize, goal, budget, email, phone })
-    setSubmitted(true)
+  const handleSubmit = async () => {
+    setIsLoading(true)
+    
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          type: "project",
+          projectType,
+          teamSize,
+          goal,
+          budget,
+          email,
+          phone,
+        }),
+      })
+      
+      if (response.ok) {
+        setSubmitted(true)
+      } else {
+        alert("Une erreur est survenue. Veuillez réessayer.")
+      }
+    } catch (error) {
+      console.error("Erreur:", error)
+      alert("Une erreur est survenue. Veuillez réessayer.")
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   if (submitted) {
     return (
       <Dialog open={open} onOpenChange={handleClose}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-md bg-[#0d1117] border border-[#1f2937] text-white">
           <DialogHeader>
-            <div className="mx-auto size-16 rounded-full bg-accent/10 flex items-center justify-center mb-4">
-              <Check className="size-8 text-accent" />
+            <div className="mx-auto size-16 rounded-full bg-[#6366f1]/20 flex items-center justify-center mb-4">
+              <Check className="size-8 text-[#6366f1]" />
             </div>
-            <DialogTitle className="text-center text-2xl">Merci pour votre demande !</DialogTitle>
-            <DialogDescription className="text-center text-base">
+            <DialogTitle className="text-center text-2xl text-white">Merci pour votre demande !</DialogTitle>
+            <DialogDescription className="text-center text-base text-gray-400">
               Nous avons bien reçu votre projet. Notre équipe vous contactera sous 24h pour discuter de vos besoins.
             </DialogDescription>
           </DialogHeader>
-          <Button onClick={() => handleClose(false)} className="w-full">
+          <Button onClick={() => handleClose(false)} className="w-full bg-[#6366f1] hover:bg-[#5558e3] text-white rounded-full">
             Fermer
           </Button>
         </DialogContent>
@@ -74,16 +104,16 @@ export function ProjectForm({ open, onOpenChange }: ProjectFormProps) {
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-2xl">
+      <DialogContent className="sm:max-w-2xl bg-[#0d1117] border border-[#1f2937] text-white">
         <DialogHeader>
-          <DialogTitle className="text-2xl">Parlez-nous de votre projet</DialogTitle>
-          <DialogDescription>Étape {step} sur 6</DialogDescription>
+          <DialogTitle className="text-2xl text-white">Parlez-nous de votre projet</DialogTitle>
+          <DialogDescription className="text-gray-400">Étape {step} sur 6</DialogDescription>
         </DialogHeader>
 
         {/* Progress bar */}
-        <div className="w-full bg-secondary rounded-full h-2 mb-6">
+        <div className="w-full bg-[#1f2937] rounded-full h-2 mb-6">
           <div
-            className="bg-accent h-2 rounded-full transition-all duration-300"
+            className="bg-[#6366f1] h-2 rounded-full transition-all duration-300"
             style={{ width: `${(step / 6) * 100}%` }}
           />
         </div>
@@ -91,27 +121,27 @@ export function ProjectForm({ open, onOpenChange }: ProjectFormProps) {
         <div className="space-y-6">
           {step === 1 && (
             <div className="space-y-4">
-              <Label className="text-lg font-semibold">Quel type de site souhaitez-vous ?</Label>
+              <Label className="text-lg font-semibold text-white">Quel type de site souhaitez-vous ?</Label>
               <RadioGroup value={projectType} onValueChange={(value) => setProjectType(value as ProjectType)}>
-                <div className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-accent cursor-pointer transition-colors">
-                  <RadioGroupItem value="portfolio" id="portfolio" />
+                <div className="flex items-center space-x-3 border border-[#1f2937] rounded-xl p-4 hover:border-[#6366f1]/50 cursor-pointer transition-colors bg-[#111827]/50">
+                  <RadioGroupItem value="portfolio" id="portfolio" className="border-[#6366f1] text-[#6366f1]" />
                   <Label htmlFor="portfolio" className="flex-1 cursor-pointer">
-                    <div className="font-semibold">Portfolio</div>
-                    <div className="text-sm text-muted-foreground">Présentez vos réalisations et votre expertise</div>
+                    <div className="font-semibold text-white">Portfolio</div>
+                    <div className="text-sm text-gray-400">Présentez vos réalisations et votre expertise</div>
                   </Label>
                 </div>
-                <div className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-accent cursor-pointer transition-colors">
-                  <RadioGroupItem value="vitrine" id="vitrine" />
+                <div className="flex items-center space-x-3 border border-[#1f2937] rounded-xl p-4 hover:border-[#6366f1]/50 cursor-pointer transition-colors bg-[#111827]/50">
+                  <RadioGroupItem value="vitrine" id="vitrine" className="border-[#6366f1] text-[#6366f1]" />
                   <Label htmlFor="vitrine" className="flex-1 cursor-pointer">
-                    <div className="font-semibold">Site Vitrine</div>
-                    <div className="text-sm text-muted-foreground">Présentez votre entreprise et vos services</div>
+                    <div className="font-semibold text-white">Site Vitrine</div>
+                    <div className="text-sm text-gray-400">Présentez votre entreprise et vos services</div>
                   </Label>
                 </div>
-                <div className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-accent cursor-pointer transition-colors">
-                  <RadioGroupItem value="ecommerce" id="ecommerce" />
+                <div className="flex items-center space-x-3 border border-[#1f2937] rounded-xl p-4 hover:border-[#6366f1]/50 cursor-pointer transition-colors bg-[#111827]/50">
+                  <RadioGroupItem value="ecommerce" id="ecommerce" className="border-[#6366f1] text-[#6366f1]" />
                   <Label htmlFor="ecommerce" className="flex-1 cursor-pointer">
-                    <div className="font-semibold">Site E-commerce</div>
-                    <div className="text-sm text-muted-foreground">Vendez vos produits en ligne</div>
+                    <div className="font-semibold text-white">Site E-commerce</div>
+                    <div className="text-sm text-gray-400">Vendez vos produits en ligne</div>
                   </Label>
                 </div>
               </RadioGroup>
@@ -120,29 +150,29 @@ export function ProjectForm({ open, onOpenChange }: ProjectFormProps) {
 
           {step === 2 && (
             <div className="space-y-4">
-              <Label className="text-lg font-semibold">Combien de collaborateurs dans votre entreprise ?</Label>
+              <Label className="text-lg font-semibold text-white">Combien de collaborateurs dans votre entreprise ?</Label>
               <RadioGroup value={teamSize} onValueChange={(value) => setTeamSize(value as TeamSize)}>
-                <div className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-accent cursor-pointer transition-colors">
-                  <RadioGroupItem value="1" id="1" />
-                  <Label htmlFor="1" className="flex-1 cursor-pointer">
+                <div className="flex items-center space-x-3 border border-[#1f2937] rounded-xl p-4 hover:border-[#6366f1]/50 cursor-pointer transition-colors bg-[#111827]/50">
+                  <RadioGroupItem value="1" id="1" className="border-[#6366f1] text-[#6366f1]" />
+                  <Label htmlFor="1" className="flex-1 cursor-pointer text-white">
                     Indépendant / Freelance
                   </Label>
                 </div>
-                <div className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-accent cursor-pointer transition-colors">
-                  <RadioGroupItem value="2-5" id="2-5" />
-                  <Label htmlFor="2-5" className="flex-1 cursor-pointer">
+                <div className="flex items-center space-x-3 border border-[#1f2937] rounded-xl p-4 hover:border-[#6366f1]/50 cursor-pointer transition-colors bg-[#111827]/50">
+                  <RadioGroupItem value="2-5" id="2-5" className="border-[#6366f1] text-[#6366f1]" />
+                  <Label htmlFor="2-5" className="flex-1 cursor-pointer text-white">
                     2 à 5 collaborateurs
                   </Label>
                 </div>
-                <div className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-accent cursor-pointer transition-colors">
-                  <RadioGroupItem value="6-10" id="6-10" />
-                  <Label htmlFor="6-10" className="flex-1 cursor-pointer">
+                <div className="flex items-center space-x-3 border border-[#1f2937] rounded-xl p-4 hover:border-[#6366f1]/50 cursor-pointer transition-colors bg-[#111827]/50">
+                  <RadioGroupItem value="6-10" id="6-10" className="border-[#6366f1] text-[#6366f1]" />
+                  <Label htmlFor="6-10" className="flex-1 cursor-pointer text-white">
                     6 à 10 collaborateurs
                   </Label>
                 </div>
-                <div className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-accent cursor-pointer transition-colors">
-                  <RadioGroupItem value="10+" id="10+" />
-                  <Label htmlFor="10+" className="flex-1 cursor-pointer">
+                <div className="flex items-center space-x-3 border border-[#1f2937] rounded-xl p-4 hover:border-[#6366f1]/50 cursor-pointer transition-colors bg-[#111827]/50">
+                  <RadioGroupItem value="10+" id="10+" className="border-[#6366f1] text-[#6366f1]" />
+                  <Label htmlFor="10+" className="flex-1 cursor-pointer text-white">
                     Plus de 10 collaborateurs
                   </Label>
                 </div>
@@ -152,7 +182,7 @@ export function ProjectForm({ open, onOpenChange }: ProjectFormProps) {
 
           {step === 3 && (
             <div className="space-y-4">
-              <Label htmlFor="goal" className="text-lg font-semibold">
+              <Label htmlFor="goal" className="text-lg font-semibold text-white">
                 Quel est l'objectif principal de votre site ?
               </Label>
               <Textarea
@@ -160,9 +190,9 @@ export function ProjectForm({ open, onOpenChange }: ProjectFormProps) {
                 placeholder="Ex: Générer des leads, vendre mes produits, présenter mes services..."
                 value={goal}
                 onChange={(e) => setGoal(e.target.value)}
-                className="min-h-32 resize-none"
+                className="min-h-32 resize-none bg-[#111827] border-[#1f2937] text-white placeholder:text-gray-500 focus:border-[#6366f1] rounded-xl"
               />
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-gray-400">
                 Décrivez en quelques mots ce que vous souhaitez accomplir avec votre site web.
               </p>
             </div>
@@ -170,29 +200,29 @@ export function ProjectForm({ open, onOpenChange }: ProjectFormProps) {
 
           {step === 4 && (
             <div className="space-y-4">
-              <Label className="text-lg font-semibold">Quel est votre budget ?</Label>
+              <Label className="text-lg font-semibold text-white">Quel est votre budget ?</Label>
               <RadioGroup value={budget} onValueChange={(value) => setBudget(value as Budget)}>
-                <div className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-accent cursor-pointer transition-colors">
-                  <RadioGroupItem value="<2000" id="<2000" />
-                  <Label htmlFor="<2000" className="flex-1 cursor-pointer">
+                <div className="flex items-center space-x-3 border border-[#1f2937] rounded-xl p-4 hover:border-[#6366f1]/50 cursor-pointer transition-colors bg-[#111827]/50">
+                  <RadioGroupItem value="<2000" id="<2000" className="border-[#6366f1] text-[#6366f1]" />
+                  <Label htmlFor="<2000" className="flex-1 cursor-pointer text-white">
                     Moins de 2 000 €
                   </Label>
                 </div>
-                <div className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-accent cursor-pointer transition-colors">
-                  <RadioGroupItem value="2000-5000" id="2000-5000" />
-                  <Label htmlFor="2000-5000" className="flex-1 cursor-pointer">
+                <div className="flex items-center space-x-3 border border-[#1f2937] rounded-xl p-4 hover:border-[#6366f1]/50 cursor-pointer transition-colors bg-[#111827]/50">
+                  <RadioGroupItem value="2000-5000" id="2000-5000" className="border-[#6366f1] text-[#6366f1]" />
+                  <Label htmlFor="2000-5000" className="flex-1 cursor-pointer text-white">
                     2 000 € - 5 000 €
                   </Label>
                 </div>
-                <div className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-accent cursor-pointer transition-colors">
-                  <RadioGroupItem value="5000-10000" id="5000-10000" />
-                  <Label htmlFor="5000-10000" className="flex-1 cursor-pointer">
+                <div className="flex items-center space-x-3 border border-[#1f2937] rounded-xl p-4 hover:border-[#6366f1]/50 cursor-pointer transition-colors bg-[#111827]/50">
+                  <RadioGroupItem value="5000-10000" id="5000-10000" className="border-[#6366f1] text-[#6366f1]" />
+                  <Label htmlFor="5000-10000" className="flex-1 cursor-pointer text-white">
                     5 000 € - 10 000 €
                   </Label>
                 </div>
-                <div className="flex items-center space-x-3 border border-border rounded-lg p-4 hover:border-accent cursor-pointer transition-colors">
-                  <RadioGroupItem value="10000+" id="10000+" />
-                  <Label htmlFor="10000+" className="flex-1 cursor-pointer">
+                <div className="flex items-center space-x-3 border border-[#1f2937] rounded-xl p-4 hover:border-[#6366f1]/50 cursor-pointer transition-colors bg-[#111827]/50">
+                  <RadioGroupItem value="10000+" id="10000+" className="border-[#6366f1] text-[#6366f1]" />
+                  <Label htmlFor="10000+" className="flex-1 cursor-pointer text-white">
                     Plus de 10 000 €
                   </Label>
                 </div>
@@ -202,7 +232,7 @@ export function ProjectForm({ open, onOpenChange }: ProjectFormProps) {
 
           {step === 5 && (
             <div className="space-y-4">
-              <Label htmlFor="email" className="text-lg font-semibold">
+              <Label htmlFor="email" className="text-lg font-semibold text-white">
                 Quelle est votre adresse email ?
               </Label>
               <Input
@@ -211,14 +241,14 @@ export function ProjectForm({ open, onOpenChange }: ProjectFormProps) {
                 placeholder="votre@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="text-base"
+                className="text-base bg-[#111827] border-[#1f2937] text-white placeholder:text-gray-500 focus:border-[#6366f1] rounded-xl h-12"
               />
             </div>
           )}
 
           {step === 6 && (
             <div className="space-y-4">
-              <Label htmlFor="phone" className="text-lg font-semibold">
+              <Label htmlFor="phone" className="text-lg font-semibold text-white">
                 Quel est votre numéro de téléphone ?
               </Label>
               <Input
@@ -227,9 +257,9 @@ export function ProjectForm({ open, onOpenChange }: ProjectFormProps) {
                 placeholder="+33 6 12 34 56 78"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="text-base"
+                className="text-base bg-[#111827] border-[#1f2937] text-white placeholder:text-gray-500 focus:border-[#6366f1] rounded-xl h-12"
               />
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-gray-400">
                 Nous vous contacterons sous 24h pour discuter de votre projet en détail.
               </p>
             </div>
@@ -238,7 +268,7 @@ export function ProjectForm({ open, onOpenChange }: ProjectFormProps) {
           {/* Navigation buttons */}
           <div className="flex gap-3 pt-4">
             {step > 1 && (
-              <Button variant="outline" onClick={() => setStep(step - 1)} className="gap-2">
+              <Button variant="outline" onClick={() => setStep(step - 1)} className="gap-2 border-[#1f2937] bg-transparent text-white hover:bg-[#1f2937] rounded-full">
                 <ArrowLeft className="size-4" />
                 Retour
               </Button>
@@ -253,14 +283,21 @@ export function ProjectForm({ open, onOpenChange }: ProjectFormProps) {
                   (step === 4 && !budget) ||
                   (step === 5 && (!email.trim() || !email.includes("@")))
                 }
-                className="flex-1 gap-2"
+                className="flex-1 gap-2 bg-[#6366f1] hover:bg-[#5558e3] text-white rounded-full disabled:opacity-50"
               >
                 Continuer
                 <ArrowRight className="size-4" />
               </Button>
             ) : (
-              <Button onClick={handleSubmit} disabled={!phone.trim()} className="flex-1">
-                Envoyer ma demande
+              <Button onClick={handleSubmit} disabled={!phone.trim() || isLoading} className="flex-1 bg-[#6366f1] hover:bg-[#5558e3] text-white rounded-full disabled:opacity-50">
+                {isLoading ? (
+                  <>
+                    <Loader2 className="mr-2 size-4 animate-spin" />
+                    Envoi en cours...
+                  </>
+                ) : (
+                  "Envoyer ma demande"
+                )}
               </Button>
             )}
           </div>

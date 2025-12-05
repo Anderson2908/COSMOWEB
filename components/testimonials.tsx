@@ -11,7 +11,7 @@ const testimonials = [
     role: "Photographe indépendante",
     content:
       "Grâce à mon nouveau portfolio, j'ai doublé mes demandes de devis en 3 mois. Le design est exactement ce que je voulais !",
-    rating: 5,
+    rating: 4,
     avatar: "professional female photographer with camera",
   },
   {
@@ -27,7 +27,7 @@ const testimonials = [
     role: "Créatrice de bijoux",
     content:
       "Ma boutique en ligne est magnifique et facile à utiliser. Les clients adorent et mes ventes ont explosé !",
-    rating: 5,
+    rating: 4,
     avatar: "professional female jewelry designer with elegant style",
   },
 ]

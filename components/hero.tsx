@@ -1,10 +1,9 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Sparkles } from "lucide-react"
+import { ArrowRight, CheckCircle2 } from "lucide-react"
 import { useState } from "react"
 import { ProjectForm } from "./project-form"
-import Image from "next/image"
 
 export function Hero() {
   const [showForm, setShowForm] = useState(false)
@@ -12,83 +11,74 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-soft-violet to-background px-4"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a0a14] px-4"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-soft-blue/30 via-transparent to-soft-teal/20 pointer-events-none" />
 
-      <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center py-20">
-          <div className="text-center lg:text-left space-y-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-soft-blue border border-accent/30 text-sm font-medium text-foreground animate-fade-in-up">
-              <Sparkles className="size-4 text-accent" />
-              <span>Sites Web Professionnels Clés en Main</span>
-            </div>
-
-            {/* Heading */}
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-balance animate-fade-in-up [animation-delay:100ms]">
-              Développez votre business <span className="text-accent">en ligne</span>
-            </h1>
-
-            {/* Description */}
-            <p className="text-xl md:text-2xl text-muted-foreground text-balance animate-fade-in-up [animation-delay:200ms]">
-              Créez votre présence digitale avec un site web moderne et performant. Portfolio, site vitrine ou
-              e-commerce : nous transformons vos idées en réalité.
-            </p>
-
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center animate-fade-in-up [animation-delay:300ms]">
-              <Button
-                size="lg"
-                className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-primary-foreground group"
-                onClick={() => setShowForm(true)}
-              >
-                Je souhaite un site
-                <ArrowRight className="ml-2 size-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="text-lg px-8 py-6 bg-transparent"
-                onClick={() => {
-                  document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })
-                }}
-              >
-                Découvrir nos services
-              </Button>
-            </div>
-
-            <div className="flex flex-wrap justify-center lg:justify-start gap-8 pt-12 text-sm text-muted-foreground animate-fade-in-up [animation-delay:400ms]">
-              <div className="flex items-center gap-2">
-                <div className="size-2 rounded-full bg-accent" />
-                <span>Livraison rapide</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="size-2 rounded-full bg-soft-teal" />
-                <span>Design moderne</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="size-2 rounded-full bg-soft-blue" />
-                <span>Support inclus</span>
-              </div>
+      <div className="container mx-auto max-w-5xl relative z-10 pt-20">
+        <div className="text-center space-y-8">
+          {/* Badge */}
+          <div className="pt-4">
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#1a1a3e] border border-[#6366f1]/30 text-sm font-semibold text-[#a5b4fc] animate-fade-in-up tracking-wider">
+              SPÉCIALISTE DIGITAL PME
             </div>
           </div>
 
-          <div className="relative hidden lg:block animate-fade-in-up [animation-delay:500ms]">
-            <div className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl border border-accent/20">
-              <Image
-                src="/modern-web-design-dashboard-interface-with-clean-u.jpg"
-                alt="Interface de design web moderne"
-                width={600}
-                height={600}
-                className="object-cover"
-                priority
-              />
-              {/* Overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent pointer-events-none" />
+          {/* Titre principal */}
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-balance animate-fade-in-up [animation-delay:100ms]">
+            <span className="text-white"><span className="text-[#c4b5fd] drop-shadow-[0_0_25px_rgba(167,139,250,0.5)]">Propulsez</span> votre entreprise</span>
+            <br />
+            <span className="text-4xl md:text-6xl lg:text-7xl bg-gradient-to-r from-[#a78bfa] via-[#c4b5fd] to-[#a78bfa] bg-clip-text text-transparent">
+              dans l'ère numérique
+            </span>
+          </h1>
+
+          {/* Description */}
+          <p className="text-lg md:text-xl text-gray-400 text-balance max-w-3xl mx-auto animate-fade-in-up [animation-delay:200ms] leading-relaxed">
+            Nous créons des sites web ultra-performants, modernes et conçus pour
+            convertir vos visiteurs en clients fidèles. Clé en main. Sans stress.
+          </p>
+
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up [animation-delay:300ms] pt-4">
+            <Button
+              size="lg"
+              className="relative text-lg px-8 py-7 bg-white text-[#0a0a14] font-semibold rounded-full group min-w-[220px] overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] active:scale-95"
+              onClick={() => setShowForm(true)}
+            >
+              <span className="relative z-10 flex items-center">
+                Lancer mon projet
+                <ArrowRight className="ml-2 size-5 group-hover:translate-x-2 transition-transform duration-300" />
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#c4b5fd] to-[#a78bfa] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="relative text-lg px-8 py-7 bg-[#1a1a2e] text-white border-2 border-[#2a2a4e] rounded-full min-w-[220px] overflow-hidden transition-all duration-300 hover:scale-105 hover:border-[#6366f1] hover:shadow-[0_0_30px_rgba(99,102,241,0.3)] active:scale-95 group"
+              onClick={() => {
+                document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })
+              }}
+            >
+              <span className="relative z-10 transition-colors duration-300 group-hover:text-[#c4b5fd]">
+                Comment ça marche ?
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1]/20 to-[#818cf8]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </Button>
+          </div>
+
+          {/* Badges en bas */}
+          <div className="flex flex-wrap justify-center gap-8 md:gap-12 pt-16 animate-fade-in-up [animation-delay:400ms]">
+            <div className="flex items-center gap-2 text-gray-400">
+              <CheckCircle2 className="size-5 text-[#6366f1]" />
+              <span className="text-sm font-medium">Design Premium</span>
             </div>
-            <div className="absolute -bottom-6 -left-6 bg-soft-violet border border-accent/30 rounded-xl p-4 shadow-lg">
-              <p className="text-sm font-semibold text-foreground">+150 sites créés</p>
-              <p className="text-xs text-muted-foreground">Clients satisfaits</p>
+            <div className="flex items-center gap-2 text-gray-400">
+              <CheckCircle2 className="size-5 text-[#6366f1]" />
+              <span className="text-sm font-medium">SEO Optimisé</span>
+            </div>
+            <div className="flex items-center gap-2 text-gray-400">
+              <CheckCircle2 className="size-5 text-[#6366f1]" />
+              <span className="text-sm font-medium">Mobile First</span>
             </div>
           </div>
         </div>

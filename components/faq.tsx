@@ -1,9 +1,7 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-
 import { useState } from "react"
-import { ChevronDown } from "lucide-react"
+import { Plus, Minus } from "lucide-react"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 
 interface FAQItem {
@@ -13,44 +11,29 @@ interface FAQItem {
 
 const faqData: FAQItem[] = [
   {
-    question: "Combien de temps faut-il pour créer un site web ?",
+    question: "Combien de temps faut-il pour créer mon site ?",
     answer:
-      "Le délai dépend du type de site choisi. Un site vitrine simple peut être livré en 2-3 semaines, tandis qu'un site e-commerce plus complexe peut prendre 4-6 semaines. Nous vous fournirons un calendrier précis après avoir discuté de vos besoins spécifiques.",
+      "Le délai dépend du type de site choisi. Un site vitrine simple (Pack Starter) peut être livré en 72h, tandis qu'un site multi-pages (Pack Confort) prend de 7 à 10 jours. Pour un site sur-mesure (Pack Premium), comptez de 2 à 5 semaines selon la complexité.",
   },
   {
-    question: "Puis-je modifier mon site web moi-même après la livraison ?",
+    question: "Le site m'appartient-il une fois terminé ?",
     answer:
-      "Absolument ! Nous créons des sites faciles à gérer. Vous recevrez une formation complète pour effectuer des modifications simples comme changer du texte, des images ou ajouter du contenu. Pour les modifications plus complexes, notre équipe reste à votre disposition.",
+      "Oui, absolument ! Une fois le site livré et le paiement effectué, vous êtes propriétaire de votre site web. Vous recevez tous les accès et pouvez en disposer comme bon vous semble.",
   },
   {
-    question: "Le prix inclut-il l'hébergement et le nom de domaine ?",
+    question: "Y a-t-il des frais mensuels cachés ?",
     answer:
-      "Nos packs incluent la création du site. L'hébergement et le nom de domaine sont facturés séparément, mais nous pouvons nous en occuper pour vous. L'hébergement démarre généralement à partir de 10€/mois selon vos besoins.",
+      "Non, aucun frais caché. Le prix affiché est le prix final pour la création de votre site. Seuls l'hébergement et la maintenance (optionnelle à 19,99€/mois) sont des frais récurrents, mais ils sont clairement indiqués et sans engagement.",
   },
   {
-    question: "Mon site sera-t-il optimisé pour les mobiles ?",
+    question: "Puis-je modifier mon site moi-même ?",
     answer:
-      "Oui, tous nos sites sont 100% responsive et optimisés pour tous les appareils (smartphones, tablettes, ordinateurs). Nous testons rigoureusement sur différents écrans pour garantir une expérience utilisateur parfaite.",
+      "Oui ! Selon le pack choisi, vous aurez accès à une interface d'administration simple pour modifier vos textes, images et contenus. Nous vous formons à son utilisation lors de la livraison.",
   },
   {
-    question: "Proposez-vous un service de maintenance après la livraison ?",
+    question: "Faites-vous le référencement (SEO) ?",
     answer:
-      "Oui ! Notre formule de suivi mensuel à 19,99€ comprend les mises à jour de sécurité, les sauvegardes régulières, le support technique et les petites modifications. Vous pouvez également opter pour un support à la demande.",
-  },
-  {
-    question: "Comment se déroule le processus de création ?",
-    answer:
-      "1) Rendez-vous de découverte pour comprendre vos besoins. 2) Création d'une maquette pour validation. 3) Développement du site. 4) Tests et ajustements. 5) Formation et mise en ligne. Vous êtes impliqué à chaque étape pour garantir un résultat qui vous correspond.",
-  },
-  {
-    question: "Puis-je voir des exemples de vos réalisations ?",
-    answer:
-      "Bien sûr ! Consultez notre section 'Nos Réalisations' sur cette page ou contactez-nous pour voir des projets similaires au vôtre. Nous serons ravis de partager notre portfolio complet lors de notre premier échange.",
-  },
-  {
-    question: "Que se passe-t-il si je ne suis pas satisfait du résultat ?",
-    answer:
-      "Votre satisfaction est notre priorité. Nous incluons plusieurs cycles de révisions dans nos packs pour nous assurer que le site final correspond exactement à vos attentes. Nous travaillons ensemble jusqu'à ce que vous soyez 100% satisfait.",
+      "Oui, tous nos sites sont optimisés pour le référencement naturel. Le Pack Starter inclut les bases SEO, le Pack Confort une optimisation SEO de base, et le Pack Premium un SEO avancé avec rédaction optimisée pour vous positionner devant vos concurrents.",
   },
 ]
 
@@ -65,67 +48,50 @@ export function FAQ() {
   return (
     <section
       id="faq"
-      ref={ref}
-      className={`py-24 bg-gradient-to-br from-background via-muted/20 to-background transition-all duration-1000 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      }`}
+      className="relative py-24 bg-[#0a0a14] overflow-hidden"
     >
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+      <div ref={ref} className="container mx-auto px-4 relative z-10">
+        {/* Header */}
+        <div className={`text-center mb-16 ${isVisible ? "animate-on-scroll" : ""}`}>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
             Questions Fréquentes
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Tout ce que vous devez savoir sur nos services et notre processus
+          <p className="text-lg md:text-xl text-gray-400">
+            Vous avez des interrogations ? Nous avons les réponses.
           </p>
         </div>
 
-        <div className="max-w-3xl mx-auto space-y-4">
+        {/* FAQ Items */}
+        <div className={`max-w-4xl mx-auto space-y-4 ${isVisible ? "animate-on-scroll-delay-1" : ""}`}>
           {faqData.map((item, index) => (
             <div
               key={index}
-              className={`border border-border rounded-lg overflow-hidden bg-card hover:shadow-lg transition-all duration-300 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-              }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
+              className="bg-[#111827]/40 backdrop-blur-sm border border-[#1f2937] rounded-2xl overflow-hidden transition-all duration-300 hover:border-[#374151]"
             >
               <button
                 onClick={() => toggleQuestion(index)}
-                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-muted/50 transition-colors"
+                className="w-full px-6 py-5 flex items-center justify-between text-left"
               >
-                <span className="font-semibold text-lg pr-8">{item.question}</span>
-                <ChevronDown
-                  className={`w-6 h-6 text-accent flex-shrink-0 transition-transform duration-300 ${
-                    openIndex === index ? "rotate-180" : ""
-                  }`}
-                />
+                <span className="font-semibold text-lg text-white pr-8">{item.question}</span>
+                <div className="size-10 rounded-full bg-[#1a1a2e] border border-[#2a2a4e] flex items-center justify-center flex-shrink-0">
+                  {openIndex === index ? (
+                    <Minus className="size-5 text-gray-400" />
+                  ) : (
+                    <Plus className="size-5 text-gray-400" />
+                  )}
+                </div>
               </button>
               <div
                 className={`overflow-hidden transition-all duration-300 ${
                   openIndex === index ? "max-h-96" : "max-h-0"
                 }`}
               >
-                <div className="px-6 pb-5 pt-2 text-muted-foreground leading-relaxed border-t border-border/50">
+                <div className="px-6 pb-6 text-gray-400 leading-relaxed">
                   {item.answer}
                 </div>
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="text-center mt-12">
-          <p className="text-muted-foreground mb-4">Vous avez d'autres questions ?</p>
-          <Button
-            onClick={() => {
-              const element = document.getElementById("contact")
-              if (element) {
-                element.scrollIntoView({ behavior: "smooth" })
-              }
-            }}
-            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:opacity-90"
-          >
-            Contactez-nous
-          </Button>
         </div>
       </div>
     </section>

@@ -1,8 +1,7 @@
 "use client"
 
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Check, Sparkles, Zap, Crown, ArrowRight, Shield } from "lucide-react"
+import { Check, Star, Zap, Crown } from "lucide-react"
 import { useState } from "react"
 import { PackForm } from "./pack-form"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
@@ -14,18 +13,19 @@ const packs = [
     name: "Pack Starter",
     price: "500",
     currency: "€",
-    icon: Sparkles,
-    gradient: "from-soft-blue to-soft-teal",
-    ideal: "Une seule landing page (vitrine) simple et efficace",
+    icon: Star,
+    iconBg: "bg-gradient-to-br from-amber-400 to-orange-500",
+    description: "Idéal pour se lancer avec une présence professionnelle efficace.",
     features: [
-      "Design responsive et moderne",
-      "Intégration du contenu fourni (texte, images, logo)",
-      "Formulaire de contact / Call-to-action",
-      "Livraison : sous 72 heures",
+      "Site One-Page moderne",
+      "Design responsive (Mobile & PC)",
+      "Formulaire de contact",
+      "Intégration réseaux sociaux",
+      "Optimisation vitesse",
     ],
-    advantages: "Rapide, simple, prix accessible",
     popular: false,
     href: "/packs/starter",
+    buttonStyle: "border",
   },
   {
     id: "confort",
@@ -33,18 +33,20 @@ const packs = [
     price: "850",
     currency: "€",
     icon: Zap,
-    gradient: "from-soft-violet to-soft-blue",
-    ideal: "Site complet de jusqu'à 3 pages (ex : Accueil, Services, Contact)",
+    iconBg: "bg-gradient-to-br from-amber-400 to-orange-500",
+    description: "La solution complète pour présenter votre activité en détail.",
     features: [
-      "Design responsive et personnalisé",
+      "Site Multi-pages (jusqu'à 5)",
+      "Blog / Actualités",
       "Optimisation SEO de base",
-      "Formulaires et Call-to-action",
-      "Suivi technique après la livraison (1 mois inclus)",
-      "Livraison : De 7 à 10 jours",
+      "Interface d'administration",
+      "Google Maps & Analytics",
+      "Support prioritaire",
+      "Formation à l'utilisation",
     ],
-    advantages: "Parfait pour une présence web complète et optimisée",
     popular: true,
     href: "/packs/confort",
+    buttonStyle: "filled",
   },
   {
     id: "premium",
@@ -52,19 +54,29 @@ const packs = [
     price: "1250",
     currency: "€",
     icon: Crown,
-    gradient: "from-accent to-soft-violet",
-    ideal: "Site web complet, nombre de pages illimité",
+    iconBg: "bg-gradient-to-br from-amber-400 to-orange-500",
+    description: "Pour les entreprises qui visent l'excellence et la performance.",
     features: [
-      "Site web sur mesure codé",
-      "Optimisation SEO avancée",
-      "Formulaires, Call-to-action et intégration possible d'outils externes",
-      "Suivi technique après la livraison (3 mois inclus)",
-      "Livraison : De 2 à 5 semaines",
+      "Site sur-mesure complexe",
+      "Fonctionnalités avancées (Rdv, E-shop...)",
+      "SEO Avancé & Rédaction",
+      "Design Premium & Animations",
+      "Multi-langues",
+      "Maintenance offerte (3 mois)",
+      "Support 7j/7",
     ],
-    advantages: "Solution complète, flexible et évolutive",
     popular: false,
     href: "/packs/premium",
+    buttonStyle: "border",
   },
+]
+
+const maintenanceFeatures = [
+  "Support technique réactif pour toute question ou problème",
+  "Corrections de bugs et ajustements mineurs",
+  "Hébergement sécurisé de votre site",
+  "Mises à jour de sécurité et maintenance préventive",
+  "Sauvegardes régulières et monitoring de performance",
 ]
 
 export function Pricing() {
@@ -72,206 +84,127 @@ export function Pricing() {
   const [selectedPack, setSelectedPack] = useState<string | null>(null)
   const { ref, isVisible } = useScrollAnimation()
 
-  const handleSelectPack = (packId: string, packName: string) => {
-    setSelectedPack(packName)
-    setShowForm(true)
-  }
-
   return (
-    <section id="pricing" className="py-24 px-4 bg-gradient-to-b from-background to-secondary/30">
-      <div ref={ref} className="container mx-auto max-w-7xl">
+    <section id="pricing" className="relative py-24 px-4 bg-[#0a0a14] overflow-hidden">
+      <div ref={ref} className="container mx-auto max-w-7xl relative z-10">
         {/* Header */}
         <div className={`text-center space-y-4 mb-16 ${isVisible ? "animate-on-scroll" : ""}`}>
-          <h2 className="text-4xl md:text-5xl font-bold text-balance">Nos Packs de Création de Site Internet</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-balance">
-            Choisissez la solution qui correspond le mieux à vos besoins et à votre budget
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white text-balance">
+            Des tarifs clairs, sans surprises
+          </h2>
+          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto text-balance">
+            Investissez dans un outil rentable pour votre entreprise.
           </p>
         </div>
 
         {/* Pricing Cards */}
         <div
-          className={`grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-6 ${isVisible ? "animate-on-scroll-delay-1" : ""}`}
+          className={`grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 pt-6 ${isVisible ? "animate-on-scroll-delay-1" : ""}`}
         >
-          {packs.map((pack, index) => {
+          {packs.map((pack) => {
             const Icon = pack.icon
             return (
-              <Card
+              <div
                 key={pack.id}
-                className={`relative flex flex-col bg-card border-2 transition-all duration-300 hover:shadow-2xl ${
+                className={`group relative flex flex-col backdrop-blur-sm rounded-2xl p-8 border cursor-pointer transition-[border-color,box-shadow,transform] duration-300 ${
                   pack.popular
-                    ? "border-accent shadow-xl scale-105 md:scale-110 lg:-mt-4 lg:mb-4"
-                    : "border-accent/20 hover:border-accent/50 hover:-translate-y-2"
+                    ? "bg-[#111827]/80 border-[#6366f1] shadow-2xl shadow-[#6366f1]/20 scale-[1.02] hover:shadow-[0_0_50px_rgba(99,102,241,0.3)]"
+                    : "bg-[#111827]/60 border-[#1f2937] hover:border-[#6366f1]/50 hover:shadow-xl hover:shadow-[#6366f1]/15"
                 }`}
               >
+                {/* Lueur au hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#6366f1]/8 via-transparent to-[#818cf8]/8" />
+                </div>
+
                 {/* Popular Badge */}
                 {pack.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <span className="bg-accent text-accent-foreground px-4 py-1 rounded-full text-sm font-semibold shadow-lg">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
+                    <span className="bg-[#6366f1] text-white px-4 py-1.5 rounded-full text-sm font-semibold shadow-lg">
                       Le plus populaire
                     </span>
                   </div>
                 )}
 
-                <CardHeader className="space-y-4">
-                  {/* Icon */}
-                  <div
-                    className={`size-16 rounded-xl bg-gradient-to-br ${pack.gradient} flex items-center justify-center text-white shadow-lg`}
-                  >
-                    <Icon className="size-8" />
-                  </div>
+                {/* Icon */}
+                <div className={`relative size-12 rounded-xl ${pack.iconBg} flex items-center justify-center text-white mb-6`}>
+                  <Icon className="size-6" />
+                </div>
 
-                  {/* Title */}
-                  <div>
-                    <CardTitle className="text-2xl font-bold">{pack.name}</CardTitle>
-                    <CardDescription className="text-base mt-2">{pack.ideal}</CardDescription>
-                  </div>
+                {/* Title */}
+                <h3 className="relative text-xl font-bold text-white mb-2 transition-colors duration-300 group-hover:text-[#a5b4fc]">{pack.name}</h3>
 
-                  {/* Price */}
-                  <div className="space-y-1">
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-4xl font-bold text-foreground">{pack.price}</span>
-                      <span className="text-xl text-muted-foreground">{pack.currency}</span>
-                    </div>
-                  </div>
-                </CardHeader>
+                {/* Price */}
+                <div className="relative mb-4">
+                  <span className="text-4xl font-bold text-white transition-colors duration-300 group-hover:text-[#c4b5fd]">{pack.price}</span>
+                  <span className="text-2xl text-gray-400">{pack.currency}</span>
+                </div>
 
-                <CardContent className="flex-1 space-y-6">
-                  {/* Features */}
-                  <ul className="space-y-3">
-                    {pack.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start gap-3">
-                        <div className="mt-0.5 size-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
-                          <Check className="size-3 text-accent" />
-                        </div>
-                        <span className="text-sm text-muted-foreground leading-relaxed">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+                {/* Description */}
+                <p className="relative text-gray-400 mb-6 text-sm leading-relaxed">{pack.description}</p>
 
-                  {/* Advantages */}
-                  <div className="pt-4 border-t border-border">
-                    <p className="text-sm font-medium text-foreground">
-                      <span className="text-accent">✓</span> {pack.advantages}
-                    </p>
-                  </div>
-                </CardContent>
+                {/* Features */}
+                <ul className="relative space-y-3 flex-1 mb-8">
+                  {pack.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="flex items-start gap-3">
+                      <Check className="size-5 text-[#6366f1] flex-shrink-0 mt-0.5" />
+                      <span className="text-sm text-gray-300">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
 
-                <CardFooter className="flex-col gap-2">
-                  <Button
-                    asChild
-                    className={`w-full group ${
-                      pack.popular
-                        ? "bg-accent hover:bg-accent/90 text-accent-foreground"
-                        : "bg-primary hover:bg-primary/90 text-primary-foreground"
-                    }`}
-                    size="lg"
-                  >
-                    <Link href={pack.href}>
-                      Voir les détails
-                      <ArrowRight className="ml-2 size-4 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </Button>
-                </CardFooter>
-              </Card>
+                {/* Button */}
+                <Button
+                  asChild
+                  className={`relative w-full rounded-full py-6 font-semibold transition-colors duration-300 ${
+                    pack.buttonStyle === "filled"
+                      ? "bg-[#6366f1] hover:bg-[#5558e3] text-white"
+                      : "bg-transparent border-2 border-[#6366f1] text-[#a5b4fc] hover:bg-[#6366f1]/10"
+                  }`}
+                  size="lg"
+                >
+                  <Link href={pack.href}>En savoir plus</Link>
+                </Button>
+              </div>
             )
           })}
         </div>
 
-        {/* Suivi mensuel option */}
+        {/* Maintenance & Sérénité */}
         <div className={`mt-16 ${isVisible ? "animate-on-scroll-delay-2" : ""}`}>
-          <Card className="bg-gradient-to-br from-accent/10 to-accent/5 border-2 border-accent/30">
-            <CardHeader className="space-y-4">
-              <div className="flex items-center gap-4">
-                <div className="size-16 rounded-xl bg-gradient-to-br from-accent to-soft-violet flex items-center justify-center text-white shadow-lg">
-                  <Shield className="size-8" />
-                </div>
-                <div className="flex-1">
-                  <CardTitle className="text-2xl font-bold">Suivi après livraison</CardTitle>
-                  <CardDescription className="text-base mt-2">
-                    Option de suivi technique et maintenance mensuelle
-                  </CardDescription>
-                </div>
-                <div className="text-right">
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-4xl font-bold text-foreground">19,99</span>
-                    <span className="text-xl text-muted-foreground">€</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground mt-1">par mois</p>
+          <div className="bg-[#111827]/60 backdrop-blur-sm rounded-2xl p-8 md:p-10 border border-[#6366f1]/30">
+            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
+              {/* Left content */}
+              <div className="flex-1">
+                <h3 className="text-2xl font-bold text-white mb-3">Maintenance & Sérénité</h3>
+                <p className="text-gray-400 mb-8">
+                  Assurez la pérennité de votre site web avec notre offre tout-inclus.
+                </p>
+
+                {/* Features in 2 columns */}
+                <div className="grid md:grid-cols-2 gap-4">
+                  {maintenanceFeatures.map((feature, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <Check className="size-5 text-[#6366f1] flex-shrink-0 mt-0.5" />
+                      <span className="text-sm text-gray-300">{feature}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-muted-foreground">
-                Profitez d'un suivi continu de votre site web après sa livraison. Cette option vous garantit :
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <div className="mt-0.5 size-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
-                    <Check className="size-3 text-accent" />
-                  </div>
-                  <span className="text-sm text-muted-foreground leading-relaxed">
-                    Support technique réactif pour toute question ou problème
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="mt-0.5 size-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
-                    <Check className="size-3 text-accent" />
-                  </div>
-                  <span className="text-sm text-muted-foreground leading-relaxed">
-                    Mises à jour de sécurité et maintenance préventive
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="mt-0.5 size-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
-                    <Check className="size-3 text-accent" />
-                  </div>
-                  <span className="text-sm text-muted-foreground leading-relaxed">
-                    Corrections de bugs et ajustements mineurs
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="mt-0.5 size-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
-                    <Check className="size-3 text-accent" />
-                  </div>
-                  <span className="text-sm text-muted-foreground leading-relaxed">
-                    Sauvegardes régulières et monitoring de performance
-                  </span>
-                </li>
-              </ul>
-            </CardContent>
-            <CardFooter>
-              <Button
-                onClick={() => {
-                  setSelectedPack("Suivi mensuel")
-                  setShowForm(true)
-                }}
-                className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
-                size="lg"
-              >
-                Souscrire au suivi mensuel
-                <ArrowRight className="ml-2 size-4" />
-              </Button>
-            </CardFooter>
-          </Card>
-        </div>
 
-        {/* Additional Info */}
-        <div className={`mt-16 text-center space-y-4 ${isVisible ? "animate-on-scroll-delay-3" : ""}`}>
-          <p className="text-muted-foreground">
-            Tous nos packs incluent un design moderne, une mise en ligne complète et un support dédié.
-          </p>
-          <p className="text-sm text-muted-foreground">
-            Besoin d'une solution personnalisée ?{" "}
-            <button
-              onClick={() => {
-                setSelectedPack("Devis personnalisé")
-                setShowForm(true)
-              }}
-              className="text-accent hover:underline font-medium"
-            >
-              Contactez-nous pour un devis sur mesure
-            </button>
-          </p>
+              {/* Right content - Price box */}
+              <div className="lg:text-right flex flex-col items-start lg:items-end">
+                <p className="text-gray-400 text-sm mb-2">Abonnement Mensuel</p>
+                <div className="mb-3">
+                  <span className="text-4xl font-bold text-white">19,99€</span>
+                  <span className="text-gray-400">/mois</span>
+                </div>
+                <span className="inline-block bg-transparent border border-[#f59e0b] text-[#f59e0b] px-4 py-1.5 rounded-full text-sm font-medium">
+                  Sans engagement
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

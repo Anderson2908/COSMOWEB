@@ -1,134 +1,155 @@
 import Link from "next/link"
-import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from "lucide-react"
+import { Twitter, Linkedin, Github, Mail, Phone, MapPin } from "lucide-react"
 
 export function Footer() {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   return (
-    <footer className="bg-muted/30 border-t border-border">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+    <footer className="relative bg-[#0a0a14] overflow-hidden">
+      <div className="container mx-auto px-4 py-16 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
           {/* Logo et description */}
-          <div className="space-y-4">
-            <h2 className="font-display text-4xl font-bold bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
-              WebMaster
-            </h2>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Nous créons des sites web modernes et performants pour propulser votre entreprise dans le digital.
+          <div className="space-y-6">
+            <div className="flex items-center gap-1">
+              <span className="text-[#6366f1] font-black text-3xl tracking-tight">W</span>
+              <span className="font-bold text-2xl text-white tracking-tight">COSMOWEB</span>
+              <span className="text-[#6366f1] text-3xl font-bold">.</span>
+            </div>
+            <p className="text-gray-400 leading-relaxed max-w-sm">
+              Nous transformons vos idées en expériences digitales performantes. L'agence web partenaire de votre croissance.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Facebook className="h-5 w-5" />
+            <div className="flex space-x-3">
+              <a 
+                href="#" 
+                className="size-10 rounded-full bg-[#1a1a2e] border border-[#2a2a4e] flex items-center justify-center text-gray-400 hover:text-white hover:border-[#6366f1] transition-colors"
+              >
+                <Twitter className="size-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Twitter className="h-5 w-5" />
+              <a 
+                href="#" 
+                className="size-10 rounded-full bg-[#1a1a2e] border border-[#2a2a4e] flex items-center justify-center text-gray-400 hover:text-white hover:border-[#6366f1] transition-colors"
+              >
+                <Linkedin className="size-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                <Instagram className="h-5 w-5" />
+              <a 
+                href="#" 
+                className="size-10 rounded-full bg-[#1a1a2e] border border-[#2a2a4e] flex items-center justify-center text-gray-400 hover:text-white hover:border-[#6366f1] transition-colors"
+              >
+                <Github className="size-5" />
               </a>
             </div>
           </div>
 
-          {/* Services */}
+          {/* Agence */}
           <div>
-            <h3 className="font-semibold text-foreground mb-4">Nos Services</h3>
-            <ul className="space-y-2">
+            <h3 className="font-bold text-white mb-6">Agence</h3>
+            <ul className="space-y-4">
               <li>
-                <a href="#services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Sites Portfolio
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Sites Vitrine
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Sites E-commerce
-                </a>
-              </li>
-              <li>
-                <a href="#pricing" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Maintenance & Support
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Informations légales */}
-          <div>
-            <h3 className="font-semibold text-foreground mb-4">Informations Légales</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/mentions-legales"
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                <button 
+                  onClick={() => scrollToSection("about")} 
+                  className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Mentions Légales
-                </Link>
+                  À propos
+                </button>
               </li>
               <li>
-                <Link
-                  href="/politique-confidentialite"
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                <button 
+                  onClick={() => scrollToSection("services")} 
+                  className="text-gray-400 hover:text-white transition-colors"
                 >
-                  Politique de Confidentialité
-                </Link>
+                  Services
+                </button>
               </li>
               <li>
-                <Link href="/cgv" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Conditions Générales de Vente
-                </Link>
+                <button 
+                  onClick={() => scrollToSection("features")} 
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Processus
+                </button>
               </li>
               <li>
-                <Link href="/cookies" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Gestion des Cookies
-                </Link>
+                <button 
+                  onClick={() => scrollToSection("pricing")} 
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Tarifs
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection("contact")} 
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Contact
+                </button>
               </li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h3 className="font-semibold text-foreground mb-4">Contact</h3>
-            <ul className="space-y-3">
-              <li className="flex items-start space-x-3">
-                <Mail className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+            <h3 className="font-bold text-white mb-6">Contact</h3>
+            <ul className="space-y-4">
+              <li className="flex items-center gap-3">
+                <Mail className="size-5 text-gray-500" />
                 <a
-                  href="mailto:contact@webmaster.fr"
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  href="mailto:contact@cosmoweb.fr"
+                  className="text-gray-400 hover:text-white transition-colors"
                 >
-                  contact@webmaster.fr
+                  contact@cosmoweb.fr
                 </a>
               </li>
-              <li className="flex items-start space-x-3">
-                <Phone className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+              <li className="flex items-center gap-3">
+                <Phone className="size-5 text-gray-500" />
                 <a
-                  href="tel:+33123456789"
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  href="tel:+33650770833"
+                  className="text-gray-400 hover:text-white transition-colors"
                 >
-                  +33 6 50 77 08 33
+                  06 50 77 08 33
                 </a>
               </li>
-              <li className="flex items-start space-x-3">
-                <MapPin className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-muted-foreground">Paris, France</span>
+              <li className="flex items-center gap-3">
+                <MapPin className="size-5 text-gray-500" />
+                <span className="text-gray-400">
+                  <span className="text-white">Paris</span>, France
+                </span>
               </li>
             </ul>
           </div>
         </div>
 
         {/* Barre de copyright */}
-        <div className="pt-8 border-t border-border">
+        <div className="pt-8 border-t border-[#1f2937]">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-sm text-muted-foreground text-center md:text-left">
-              © {new Date().getFullYear()} WebMaster Digital. Tous droits réservés.
+            <p className="text-sm text-gray-500">
+              © 2025 COSMOWEB. Tous droits réservés.
             </p>
-            <p className="text-sm text-muted-foreground text-center md:text-right">
-              SIRET : 123 456 789 00012 | TVA : FR12345678900
-            </p>
+            <div className="flex items-center gap-6">
+              <Link
+                href="/mentions-legales"
+                className="text-sm text-gray-500 hover:text-white transition-colors"
+              >
+                Mentions Légales
+              </Link>
+              <Link
+                href="/cgv"
+                className="text-sm text-gray-500 hover:text-white transition-colors"
+              >
+                CGV
+              </Link>
+              <Link
+                href="/politique-confidentialite"
+                className="text-sm text-gray-500 hover:text-white transition-colors"
+              >
+                Confidentialité
+              </Link>
+            </div>
           </div>
         </div>
       </div>
