@@ -98,7 +98,7 @@ export function Footer() {
               <li className="flex items-center gap-3">
                 <Mail className="size-5 text-gray-500" />
                 <a
-                  href="mailto:contact@cosmoweb.fr"
+                  href="mailto:contact-agence@cosmoweb.fr"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   contact-agence@cosmoweb.fr

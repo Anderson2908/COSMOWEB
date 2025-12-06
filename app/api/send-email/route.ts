@@ -59,7 +59,7 @@ Date : ${new Date().toLocaleString("fr-FR")}
     }
 
     const resendApiKey = process.env.RESEND_API_KEY
-    const recipientEmail = process.env.RECIPIENT_EMAIL || "contact@cosmoweb.fr"
+    const recipientEmail = process.env.RECIPIENT_EMAIL || "contact-agence@cosmoweb.fr"
     
     if (resendApiKey) {
       // Utiliser le domaine de test Resend (onboarding@resend.dev)

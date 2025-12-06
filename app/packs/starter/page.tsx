@@ -298,11 +298,11 @@ export default function StarterPackPage() {
             <p className="text-lg">Des questions ? Notre équipe est là pour vous aider !</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
-                href="mailto:contact@cosmoweb.fr"
+                href="mailto:contact-agence@cosmoweb.fr"
                 className="flex items-center gap-2 hover:text-[#6366f1] transition-colors"
               >
                 <Mail className="size-5" />
-                contact@cosmoweb.fr
+                contact-agence@cosmoweb.fr
               </a>
               <a href="tel:+33650770833" className="flex items-center gap-2 hover:text-[#6366f1] transition-colors">
                 <Phone className="size-5" />
