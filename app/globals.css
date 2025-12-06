@@ -226,6 +226,29 @@
   }
 }
 
+/* Animation flocons de neige pour Noël */
+@keyframes snowfall {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(400px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.animate-snowfall {
+  animation: snowfall 5s linear infinite;
+  will-change: transform, opacity;
+}
+
 /* Support prefers-reduced-motion - désactive toutes les animations */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -239,7 +262,8 @@
   .animate-on-scroll,
   .animate-on-scroll-delay-1,
   .animate-on-scroll-delay-2,
-  .animate-on-scroll-delay-3 {
+  .animate-on-scroll-delay-3,
+  .animate-snowfall {
     opacity: 1;
     transform: none;
     animation: none;
