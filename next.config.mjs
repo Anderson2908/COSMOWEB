@@ -6,8 +6,10 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  env: {
-    STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+  experimental: {
+    serverActions: {
+      allowedOrigins: ["*"],
+    },
   },
 }
 
