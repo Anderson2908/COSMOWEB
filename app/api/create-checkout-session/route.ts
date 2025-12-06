@@ -1,12 +1,19 @@
 import { NextRequest, NextResponse } from "next/server"
 import Stripe from "stripe"
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2024-12-18.acacia",
-})
+function getStripe() {
+  const key = process.env.STRIPE_SECRET_KEY
+  if (!key) {
+    throw new Error("STRIPE_SECRET_KEY is not defined")
+  }
+  return new Stripe(key, {
+    apiVersion: "2024-12-18.acacia",
+  })
+}
 
 export async function POST(request: NextRequest) {
   try {
+    const stripe = getStripe()
     const { priceId, customerEmail } = await request.json()
 
     // Créer la session de checkout pour un abonnement
