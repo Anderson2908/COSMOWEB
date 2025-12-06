@@ -34,30 +34,70 @@ export function About() {
           </div>
 
           {/* Deux colonnes : Mission et Expertise */}
-          <div className={`grid md:grid-cols-2 gap-8 md:gap-12 mb-12 ${isVisible ? "animate-on-scroll-delay-1" : ""}`}>
+          <div className={`grid md:grid-cols-2 gap-6 md:gap-8 mb-12 ${isVisible ? "animate-on-scroll-delay-1" : ""}`}>
             {/* Notre Mission */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <Settings className="size-6 text-gray-400" />
-                <h3 className="text-xl font-bold text-white">Notre Mission</h3>
+            <div className="group relative bg-gradient-to-br from-[#0f0f1a] to-[#111827] rounded-2xl p-8 border border-[#1f2937] hover:border-[#3b82f6]/50 transition-all duration-500">
+              {/* Icône flottante */}
+              <div className="absolute -top-5 left-8">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-[#3b82f6] rounded-xl blur-lg opacity-40 group-hover:opacity-60 transition-opacity" />
+                  <div className="relative bg-gradient-to-br from-[#3b82f6] to-[#2563eb] rounded-xl p-3 shadow-lg">
+                    <Settings className="size-6 text-white" />
+                  </div>
+                </div>
               </div>
-              <p className="text-gray-400 leading-relaxed">
-                Transformer vos idées en expériences web sur mesure, modernes et performantes. Nous concevons des outils
-                digitaux parfaitement adaptés aux besoins spécifiques des PME, loin des solutions génériques sans âme.
-              </p>
+              
+              {/* Contenu */}
+              <div className="mt-6 space-y-4">
+                <h3 className="text-2xl font-bold text-white">Notre Mission</h3>
+                <div className="w-12 h-1 bg-gradient-to-r from-[#3b82f6] to-[#60a5fa] rounded-full" />
+                <p className="text-gray-400 leading-relaxed text-[15px]">
+                  Transformer vos idées en <span className="text-white font-medium">expériences web sur mesure</span>, modernes et performantes. Nous concevons des outils
+                  digitaux parfaitement adaptés aux besoins spécifiques des PME, loin des solutions génériques sans âme.
+                </p>
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 pt-2">
+                  <span className="px-3 py-1 text-xs font-medium bg-[#3b82f6]/10 text-[#60a5fa] rounded-full border border-[#3b82f6]/20">Sur mesure</span>
+                  <span className="px-3 py-1 text-xs font-medium bg-[#3b82f6]/10 text-[#60a5fa] rounded-full border border-[#3b82f6]/20">Moderne</span>
+                  <span className="px-3 py-1 text-xs font-medium bg-[#3b82f6]/10 text-[#60a5fa] rounded-full border border-[#3b82f6]/20">Performant</span>
+                </div>
+              </div>
             </div>
 
             {/* L'Expertise */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <Trophy className="size-6 text-[#f59e0b]" />
-                <h3 className="text-xl font-bold text-white">L'Expertise</h3>
+            <div className="group relative bg-gradient-to-br from-[#0f0f1a] to-[#111827] rounded-2xl p-8 border border-[#1f2937] hover:border-[#f59e0b]/50 transition-all duration-500">
+              {/* Icône flottante */}
+              <div className="absolute -top-5 left-8">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-[#f59e0b] rounded-xl blur-lg opacity-40 group-hover:opacity-60 transition-opacity" />
+                  <div className="relative bg-gradient-to-br from-[#f59e0b] to-[#d97706] rounded-xl p-3 shadow-lg">
+                    <Trophy className="size-6 text-white" />
+                  </div>
+                </div>
               </div>
-              <p className="text-gray-400 leading-relaxed">
-                Forts d'une expérience solide dans le développement web pour des entreprises générant plus de{" "}
-                <span className="font-bold text-white">12 millions d'euros</span> de CA annuel, nous maîtrisons les enjeux de
-                performance et de conversion à grande échelle.
-              </p>
+              
+              {/* Contenu */}
+              <div className="mt-6 space-y-4">
+                <h3 className="text-2xl font-bold text-white">L'Expertise</h3>
+                <div className="w-12 h-1 bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] rounded-full" />
+                <p className="text-gray-400 leading-relaxed text-[15px]">
+                  Forts d'une expérience solide dans le développement web pour des entreprises générant plus de{" "}
+                  <span className="font-bold text-white">12 millions d'euros</span> de CA annuel, nous maîtrisons les enjeux de
+                  performance et de conversion à grande échelle.
+                </p>
+                {/* Stat mise en avant */}
+                <div className="flex items-center gap-4 pt-2">
+                  <div className="flex flex-col">
+                    <span className="text-3xl font-bold bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] bg-clip-text text-transparent">12M€+</span>
+                    <span className="text-xs text-gray-500 uppercase tracking-wider">CA clients accompagnés</span>
+                  </div>
+                  <div className="w-px h-12 bg-[#1f2937]" />
+                  <div className="flex flex-col">
+                    <span className="text-3xl font-bold bg-gradient-to-r from-[#f59e0b] to-[#fbbf24] bg-clip-text text-transparent">100%</span>
+                    <span className="text-xs text-gray-500 uppercase tracking-wider">Satisfaction client</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
