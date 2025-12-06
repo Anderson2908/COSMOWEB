@@ -1,13 +1,11 @@
 "use client"
 
-import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Check, Shield, Zap, Headphones, Server, RefreshCw } from "lucide-react"
+import { Check, Shield, Zap, Headphones, Server, RefreshCw, ArrowRight } from "lucide-react"
 import Link from "next/link"
-import { loadStripe } from "@stripe/stripe-js"
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
+// Lien de paiement Stripe (Payment Link)
+const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/test_bJe4gB3xdg4h3cSfOx08g00"
 
 const features = [
   {
@@ -38,56 +36,6 @@ const features = [
 ]
 
 export default function SubscribePage() {
-  const [email, setEmail] = useState("")
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState("")
-
-  const handleSubscribe = async (e: React.FormEvent) => {
-    e.preventDefault()
-    
-    if (!email) {
-      setError("Veuillez entrer votre adresse email")
-      return
-    }
-
-    setLoading(true)
-    setError("")
-
-    try {
-      const response = await fetch("/api/create-checkout-session", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          priceId: process.env.NEXT_PUBLIC_STRIPE_PRICE_ID,
-          customerEmail: email,
-        }),
-      })
-
-      const data = await response.json()
-
-      if (!response.ok) {
-        throw new Error(data.error || "Erreur serveur")
-      }
-
-      if (data.url) {
-        // Rediriger vers Stripe Checkout
-        window.location.href = data.url
-      } else if (data.sessionId) {
-        // Alternative: utiliser Stripe.js pour rediriger
-        const stripe = await stripePromise
-        await stripe?.redirectToCheckout({ sessionId: data.sessionId })
-      } else {
-        throw new Error("Erreur lors de la création de la session")
-      }
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : "Une erreur est survenue"
-      setError(errorMessage)
-      setLoading(false)
-    }
-  }
-
   return (
     <div className="min-h-screen bg-[#0a0a14] text-white">
       {/* Header */}
@@ -149,54 +97,23 @@ export default function SubscribePage() {
             </div>
           </div>
 
-          {/* Right Column - Form */}
+          {/* Right Column - CTA */}
           <div className="lg:sticky lg:top-8">
             <div className="bg-[#111827] rounded-2xl p-8 border border-[#6366f1]/30 shadow-xl shadow-[#6366f1]/5">
               <h2 className="text-2xl font-bold mb-2">Souscrire à l&apos;abonnement</h2>
               <p className="text-gray-400 mb-6">
-                Entrez votre email pour accéder au paiement sécurisé
+                Cliquez sur le bouton ci-dessous pour accéder au paiement sécurisé via Stripe.
               </p>
 
-              <form onSubmit={handleSubscribe} className="space-y-4">
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                    Adresse email
-                  </label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="votre@email.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-[#0a0a14] border-[#1f2937] text-white placeholder:text-gray-500 focus:border-[#6366f1] focus:ring-[#6366f1]"
-                    required
-                  />
-                </div>
-
-                {error && (
-                  <div className="bg-red-500/10 border border-red-500/30 text-red-400 px-4 py-3 rounded-lg text-sm">
-                    {error}
-                  </div>
-                )}
-
-                <Button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full bg-[#6366f1] hover:bg-[#5558e3] text-white py-6 rounded-full text-lg font-semibold transition-all duration-300 disabled:opacity-50"
-                >
-                  {loading ? (
-                    <span className="flex items-center gap-2">
-                      <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                      </svg>
-                      Redirection en cours...
-                    </span>
-                  ) : (
-                    "Continuer vers le paiement"
-                  )}
-                </Button>
-              </form>
+              <Button
+                asChild
+                className="w-full bg-[#6366f1] hover:bg-[#5558e3] text-white py-6 rounded-full text-lg font-semibold transition-all duration-300"
+              >
+                <a href={STRIPE_PAYMENT_LINK} className="flex items-center justify-center gap-2">
+                  Continuer vers le paiement
+                  <ArrowRight className="w-5 h-5" />
+                </a>
+              </Button>
 
               {/* Trust badges */}
               <div className="mt-8 pt-6 border-t border-[#1f2937]">
@@ -211,14 +128,9 @@ export default function SubscribePage() {
                   </div>
                 </div>
                 <div className="flex justify-center mt-4">
-                  <img 
-                    src="https://stripe.com/img/v3/home/twitter.png" 
-                    alt="Powered by Stripe" 
-                    className="h-6 opacity-50"
-                    onError={(e) => {
-                      e.currentTarget.style.display = 'none'
-                    }}
-                  />
+                  <svg className="h-8 opacity-60" viewBox="0 0 60 25" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#6772e5" d="M59.64 14.28h-8.06c.19 1.93 1.6 2.55 3.2 2.55 1.64 0 2.96-.37 4.05-.95v3.32a10.4 10.4 0 0 1-4.56 1.03c-4.02 0-6.83-2.57-6.83-7.14 0-4.12 2.67-7.14 6.28-7.14 3.65 0 5.96 2.87 5.96 7.12 0 .37-.02.72-.04 1.21zm-4-5.47c-1.18 0-2.13.91-2.27 2.59h4.44c-.11-1.63-.95-2.59-2.17-2.59zM40.95 20.03V6.26h4.02l.23 1.52c.86-1.14 2.17-1.82 3.69-1.82 1.32 0 2.41.47 3.11 1.27.75.83 1.1 1.92 1.1 3.56v9.24h-4.19v-8.44c0-1.35-.52-2.02-1.57-2.02-.91 0-1.65.52-2.21 1.4v9.06h-4.18zM32.96 5.07c1.35 0 2.45-1.03 2.45-2.35 0-1.35-1.1-2.37-2.45-2.37-1.35 0-2.43 1.02-2.43 2.37 0 1.32 1.08 2.35 2.43 2.35zm-2.08 14.96V6.26h4.19v13.77h-4.19zM25.35 20.03V10.3h-1.92V6.62h1.92V5.39c0-1.89.54-3.18 1.53-4.05.92-.82 2.18-1.25 3.78-1.25.58 0 1.17.06 1.78.19v3.52c-.38-.12-.78-.18-1.22-.18-1.13 0-1.68.61-1.68 1.77v1.23h2.59v3.68h-2.59v9.73h-4.19zM14.17 20.03V6.26h4.02l.23 1.52c.86-1.14 2.17-1.82 3.69-1.82V10c-.45-.08-.82-.12-1.14-.12-1.05 0-1.87.41-2.61 1.27v8.88h-4.19zM6.5 16.24c0 .94.73 1.44 1.97 1.44 1 0 2.06-.32 2.96-.88v3.2c-1.12.68-2.59 1.03-4.11 1.03C4.37 21.03 2 19.21 2 16.45c0-3.07 2.54-4.22 5.35-4.81l1.96-.41c.63-.14.87-.42.87-.78 0-.56-.55-.88-1.6-.88-1.2 0-2.57.42-3.74 1.06V7.51c1.12-.54 2.76-.92 4.41-.92 3.16 0 5.21 1.47 5.21 4.37 0 2.32-1.33 3.65-4.21 4.25l-1.91.4c-.9.19-1.22.41-1.22.87 0 .44.37.76 1.38.76zm-4.5 3.79V6.26h4.02l.25 1.43c1.13-1.2 2.64-1.73 4.04-1.73 1.83 0 3.25.65 4.13 1.9.95-1.18 2.5-1.9 4.21-1.9 1.6 0 2.9.54 3.74 1.48.81.92 1.14 2.14 1.14 3.66v9.13h-4.18v-8.54c0-1.29-.5-1.92-1.42-1.92-.7 0-1.32.37-1.87 1.05v9.41h-4.18v-8.54c0-1.29-.5-1.92-1.42-1.92-.7 0-1.32.37-1.87 1.05v9.41H2z"/>
+                  </svg>
                 </div>
               </div>
             </div>
@@ -234,4 +146,3 @@ export default function SubscribePage() {
     </div>
   )
 }
-
