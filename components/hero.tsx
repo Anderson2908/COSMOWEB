@@ -24,7 +24,7 @@ export function Hero() {
           </div>
 
           {/* Titre principal */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-balance animate-fade-in-up [animation-delay:100ms]">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-balance animate-fade-in-up [animation-delay:100ms]">
             <span className="text-white"><span className="text-[#c4b5fd] drop-shadow-[0_0_25px_rgba(167,139,250,0.5)]">Propulsez</span> votre entreprise</span>
             <br />
             <span className="text-4xl md:text-6xl lg:text-7xl bg-gradient-to-r from-[#a78bfa] via-[#c4b5fd] to-[#a78bfa] bg-clip-text text-transparent">

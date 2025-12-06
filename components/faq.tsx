@@ -13,7 +13,7 @@ const faqData: FAQItem[] = [
   {
     question: "Comment fonctionne la facturation ?",
     answer:
-      "La facturation se fait par virement bancaire avec un acompte de 50% à la commande. Le solde est réglé à la livraison du site. Vos paiements sont entièrement sécurisés et vous recevez une facture conforme pour chaque transaction.",
+      "La facturation se fait par virement bancaire à la commande. Vos paiements sont entièrement sécurisés et vous recevez une facture conforme pour chaque transaction.",
   },
   {
     question: "Combien de temps faut-il pour créer mon site ?",
