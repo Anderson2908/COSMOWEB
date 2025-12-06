@@ -102,7 +102,7 @@ export function Footer() {
                   href="mailto:contact@cosmoweb.fr"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  contact@cosmoweb.fr
+                  contact-agence@cosmoweb.fr
                 </a>
               </li>
               <li className="flex items-center gap-3">

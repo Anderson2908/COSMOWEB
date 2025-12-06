@@ -11,6 +11,11 @@ interface FAQItem {
 
 const faqData: FAQItem[] = [
   {
+    question: "Comment fonctionne la facturation ?",
+    answer:
+      "La facturation se fait par virement bancaire avec un acompte de 50% à la commande. Le solde est réglé à la livraison du site. Vos paiements sont entièrement sécurisés et vous recevez une facture conforme pour chaque transaction.",
+  },
+  {
     question: "Combien de temps faut-il pour créer mon site ?",
     answer:
       "Le délai dépend du type de site choisi. Un site vitrine simple (Pack Starter) peut être livré en 72h, tandis qu'un site multi-pages (Pack Confort) prend de 7 à 10 jours. Pour un site sur-mesure (Pack Premium), comptez de 2 à 5 semaines selon la complexité.",
@@ -28,7 +33,7 @@ const faqData: FAQItem[] = [
   {
     question: "Puis-je modifier mon site moi-même ?",
     answer:
-      "Oui ! Selon le pack choisi, vous aurez accès à une interface d'administration simple pour modifier vos textes, images et contenus. Nous vous formons à son utilisation lors de la livraison.",
+      "Oui ! Selon le pack choisi, vous aurez accès à une interface d'administration simple pour modifier vos textes, images et contenus. Nous vous formons aux modifications de base de votre site lors de la livraison. Cependant, il est vivement recommandé d'opter pour notre formule de suivi qui vous assure une tranquillité d'esprit totale.",
   },
   {
     question: "Faites-vous le référencement (SEO) ?",
