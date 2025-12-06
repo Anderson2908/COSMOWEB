@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Check, Star, Zap, Crown, ArrowRight, Snowflake } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { PackForm } from "./pack-form"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 import Link from "next/link"
@@ -75,19 +75,36 @@ const packs = [
   },
 ]
 
-// Composant flocon de neige animé
+// Composant flocon de neige animé (rendu uniquement côté client pour éviter l'erreur d'hydratation)
 function SnowEffect() {
+  const [snowflakes, setSnowflakes] = useState<Array<{ left: number; delay: number; duration: number; fontSize: number }>>([])
+
+  // Génère les valeurs aléatoires uniquement côté client après le montage
+  useEffect(() => {
+    setSnowflakes(
+      Array.from({ length: 20 }, () => ({
+        left: Math.random() * 100,
+        delay: Math.random() * 5,
+        duration: 3 + Math.random() * 4,
+        fontSize: 8 + Math.random() * 10,
+      }))
+    )
+  }, [])
+
+  // Ne rien afficher côté serveur
+  if (snowflakes.length === 0) return null
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-2xl">
-      {[...Array(20)].map((_, i) => (
+      {snowflakes.map((flake, i) => (
         <div
           key={i}
           className="absolute text-white/60 animate-snowfall"
           style={{
-            left: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 5}s`,
-            animationDuration: `${3 + Math.random() * 4}s`,
-            fontSize: `${8 + Math.random() * 10}px`,
+            left: `${flake.left}%`,
+            animationDelay: `${flake.delay}s`,
+            animationDuration: `${flake.duration}s`,
+            fontSize: `${flake.fontSize}px`,
           }}
         >
           ❄
