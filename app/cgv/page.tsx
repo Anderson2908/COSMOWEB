@@ -34,8 +34,8 @@ export default function CGVPage() {
           <section>
             <h2 className="text-2xl font-semibold text-foreground mb-4">1. Objet</h2>
             <p className="text-muted-foreground leading-relaxed">
-              Les présentes Conditions Générales de Vente (CGV) régissent les relations contractuelles entre WebMaster
-              Digital, SARL au capital de 10 000 €, SIRET 123 456 789 00012, ci-après dénommée "le Prestataire", et
+              Les présentes Conditions Générales de Vente (CGV) régissent les relations contractuelles entre COSMOWEB,
+              entreprise individuelle en cours d'immatriculation, ci-après dénommée "le Prestataire", et
               toute personne physique ou morale, ci-après dénommée "le Client", souhaitant bénéficier des services de
               création de sites web proposés par le Prestataire.
             </p>
@@ -43,7 +43,7 @@ export default function CGVPage() {
 
           <section>
             <h2 className="text-2xl font-semibold text-foreground mb-4">2. Services proposés</h2>
-            <p className="text-muted-foreground leading-relaxed mb-4">WebMaster propose les prestations suivantes :</p>
+            <p className="text-muted-foreground leading-relaxed mb-4">COSMOWEB propose les prestations suivantes :</p>
             <ul className="list-disc list-inside space-y-2 text-muted-foreground">
               <li>Création de sites web vitrine</li>
               <li>Développement de sites portfolio</li>
@@ -173,7 +173,7 @@ export default function CGVPage() {
             </p>
             <p className="text-muted-foreground leading-relaxed">
               Le Prestataire se réserve le droit de mentionner la réalisation dans son portfolio et d'afficher un lien
-              discret "Site créé par WebMaster" dans le footer du site.
+              discret "Site créé par COSMOWEB" dans le footer du site.
             </p>
           </section>
 
@@ -242,7 +242,7 @@ export default function CGVPage() {
             <p className="text-muted-foreground leading-relaxed">
               Les données personnelles collectées sont traitées conformément à notre Politique de Confidentialité et au
               RGPD. Le Client dispose d'un droit d'accès, de rectification et de suppression de ses données en
-              contactant : contact@webmaster.fr
+              contactant : contact-agence@cosmoweb.fr
             </p>
           </section>
 
@@ -271,7 +271,7 @@ export default function CGVPage() {
             <div className="bg-muted/50 p-6 rounded-lg space-y-2">
               <p className="text-foreground">Pour toute question concernant nos CGV, contactez-nous :</p>
               <p className="text-foreground">
-                <strong>Email :</strong> contact@webmaster.fr
+                <strong>Email :</strong> contact-agence@cosmoweb.fr
               </p>
               <p className="text-foreground">
                 <strong>Téléphone :</strong> +33 6 50 77 08 33

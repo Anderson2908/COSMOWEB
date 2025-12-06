@@ -35,7 +35,7 @@ export default function MentionsLegalesPage() {
             <h2 className="text-2xl font-semibold text-foreground mb-4">1. Informations légales</h2>
             <p className="text-muted-foreground leading-relaxed">
               Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance en l'économie
-              numérique, il est précisé aux utilisateurs du site webmaster.fr l'identité des différents intervenants
+              numérique, il est précisé aux utilisateurs du site cosmoweb.fr l'identité des différents intervenants
               dans le cadre de sa réalisation et de son suivi.
             </p>
           </section>
@@ -44,19 +44,10 @@ export default function MentionsLegalesPage() {
             <h2 className="text-2xl font-semibold text-foreground mb-4">2. Éditeur du site</h2>
             <div className="bg-muted/50 p-6 rounded-lg space-y-2">
               <p className="text-foreground">
-                <strong>Raison sociale :</strong> WebMaster Digital
+                <strong>Raison sociale :</strong> COSMOWEB
               </p>
               <p className="text-foreground">
-                <strong>Forme juridique :</strong> SARL
-              </p>
-              <p className="text-foreground">
-                <strong>Capital social :</strong> 10 000 €
-              </p>
-              <p className="text-foreground">
-                <strong>SIRET :</strong> 123 456 789 00012
-              </p>
-              <p className="text-foreground">
-                <strong>TVA Intracommunautaire :</strong> FR12345678900
+                <strong>Statut :</strong> Entreprise individuelle (en cours d'immatriculation)
               </p>
               <p className="text-foreground">
                 <strong>Siège social :</strong> Paris, France
@@ -65,7 +56,7 @@ export default function MentionsLegalesPage() {
                 <strong>Téléphone :</strong> +33 6 50 77 08 33
               </p>
               <p className="text-foreground">
-                <strong>Email :</strong> contact@webmaster.fr
+                <strong>Email :</strong> contact-agence@cosmoweb.fr
               </p>
             </div>
           </section>
@@ -73,7 +64,7 @@ export default function MentionsLegalesPage() {
           <section>
             <h2 className="text-2xl font-semibold text-foreground mb-4">3. Directeur de la publication</h2>
             <p className="text-muted-foreground leading-relaxed">
-              Le directeur de la publication du site est le représentant légal de la société WebMaster Digital.
+              Le directeur de la publication du site est le représentant légal de COSMOWEB.
             </p>
           </section>
 
@@ -116,12 +107,12 @@ export default function MentionsLegalesPage() {
           <section>
             <h2 className="text-2xl font-semibold text-foreground mb-4">6. Limitation de responsabilité</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              WebMaster s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées sur ce site.
-              Toutefois, WebMaster ne peut garantir l'exactitude, la précision ou l'exhaustivité des informations mises
+              COSMOWEB s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées sur ce site.
+              Toutefois, COSMOWEB ne peut garantir l'exactitude, la précision ou l'exhaustivité des informations mises
               à disposition sur ce site.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              En conséquence, WebMaster décline toute responsabilité pour toute imprécision, inexactitude ou omission
+              En conséquence, COSMOWEB décline toute responsabilité pour toute imprécision, inexactitude ou omission
               portant sur des informations disponibles sur ce site.
             </p>
           </section>
@@ -129,7 +120,7 @@ export default function MentionsLegalesPage() {
           <section>
             <h2 className="text-2xl font-semibold text-foreground mb-4">7. Liens hypertextes</h2>
             <p className="text-muted-foreground leading-relaxed">
-              Le site peut contenir des liens hypertextes vers d'autres sites. WebMaster n'exerce aucun contrôle sur ces
+              Le site peut contenir des liens hypertextes vers d'autres sites. COSMOWEB n'exerce aucun contrôle sur ces
               sites et décline toute responsabilité quant à leur contenu.
             </p>
           </section>

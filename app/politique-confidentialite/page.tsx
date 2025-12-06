@@ -34,7 +34,7 @@ export default function PolitiqueConfidentialitePage() {
           <section>
             <h2 className="text-2xl font-semibold text-foreground mb-4">1. Introduction</h2>
             <p className="text-muted-foreground leading-relaxed">
-              WebMaster accorde une grande importance à la protection de vos données personnelles. La présente politique
+              COSMOWEB accorde une grande importance à la protection de vos données personnelles. La présente politique
               de confidentialité explique comment nous collectons, utilisons, partageons et protégeons vos informations
               personnelles conformément au Règlement Général sur la Protection des Données (RGPD).
             </p>
@@ -44,10 +44,10 @@ export default function PolitiqueConfidentialitePage() {
             <h2 className="text-2xl font-semibold text-foreground mb-4">2. Responsable du traitement</h2>
             <div className="bg-muted/50 p-6 rounded-lg space-y-2">
               <p className="text-foreground">
-                <strong>Société :</strong> WebMaster Digital
+                <strong>Société :</strong> COSMOWEB
               </p>
               <p className="text-foreground">
-                <strong>Email :</strong> contact@webmaster.fr
+                <strong>Email :</strong> contact-agence@cosmoweb.fr
               </p>
               <p className="text-foreground">
                 <strong>Adresse :</strong> Paris, France
@@ -124,7 +124,7 @@ export default function PolitiqueConfidentialitePage() {
               Vos données personnelles peuvent être transmises aux destinataires suivants :
             </p>
             <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-              <li>Personnel autorisé de WebMaster</li>
+              <li>Personnel autorisé de COSMOWEB</li>
               <li>Prestataires techniques (hébergement, maintenance)</li>
               <li>Outils de gestion de la relation client (CRM)</li>
               <li>Services de paiement en ligne</li>
@@ -161,7 +161,7 @@ export default function PolitiqueConfidentialitePage() {
               </li>
             </ul>
             <p className="text-muted-foreground leading-relaxed mt-4">
-              Pour exercer vos droits, contactez-nous à : <strong>contact@webmaster.fr</strong>
+              Pour exercer vos droits, contactez-nous à : <strong>contact-agence@cosmoweb.fr</strong>
             </p>
           </section>
 
@@ -207,7 +207,7 @@ export default function PolitiqueConfidentialitePage() {
             <h2 className="text-2xl font-semibold text-foreground mb-4">12. Contact</h2>
             <p className="text-muted-foreground leading-relaxed">
               Pour toute question concernant cette politique de confidentialité ou pour exercer vos droits,
-              contactez-nous à : <strong>contact@webmaster.fr</strong> ou <strong>+33 6 50 77 08 33</strong>
+              contactez-nous à : <strong>contact-agence@cosmoweb.fr</strong> ou <strong>+33 6 50 77 08 33</strong>
             </p>
           </section>
         </div>
