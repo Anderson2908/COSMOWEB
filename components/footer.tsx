@@ -18,7 +18,6 @@ export function Footer() {
             <div className="flex items-center gap-1">
               <span className="text-[#6366f1] font-black text-3xl tracking-tight">W</span>
               <span className="font-bold text-2xl text-white tracking-tight">COSMOWEB</span>
-              <span className="text-[#6366f1] text-3xl font-bold">.</span>
             </div>
             <p className="text-gray-400 leading-relaxed max-w-sm">
               Nous transformons vos idées en expériences digitales performantes. L'agence web partenaire de votre croissance.

@@ -28,7 +28,6 @@ export function Navbar({ onOpenForm }: NavbarProps) {
             <button onClick={() => scrollToSection("hero")} className="hover:opacity-80 transition-opacity flex items-center gap-1">
               <span className="text-[#6366f1] font-black text-3xl tracking-tight">W</span>
               <span className="font-bold text-2xl text-white tracking-tight">COSMOWEB</span>
-              <span className="text-[#6366f1] text-3xl font-bold">.</span>
             </button>
           </div>
 
@@ -66,7 +65,7 @@ export function Navbar({ onOpenForm }: NavbarProps) {
             </button>
             <Button 
               asChild 
-              className="bg-white text-[#0a0a14] hover:bg-gray-100 font-semibold px-6 py-2 rounded-full"
+              className="relative bg-white text-[#0a0a14] hover:bg-gray-100 font-semibold px-6 py-2 rounded-full shadow-[0_0_20px_rgba(255,255,255,0.5),0_0_40px_rgba(99,102,241,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.7),0_0_50px_rgba(99,102,241,0.5)] transition-shadow duration-300"
             >
               <a href="https://calendly.com/contact-agence-cosmoweb/30min" target="_blank" rel="noopener noreferrer">
                 Réserver un appel
@@ -115,7 +114,7 @@ export function Navbar({ onOpenForm }: NavbarProps) {
             >
               FAQ
             </button>
-            <Button asChild className="w-full bg-white text-[#0a0a14] hover:bg-gray-100 font-semibold rounded-full">
+            <Button asChild className="w-full bg-white text-[#0a0a14] hover:bg-gray-100 font-semibold rounded-full shadow-[0_0_20px_rgba(255,255,255,0.5),0_0_40px_rgba(99,102,241,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.7),0_0_50px_rgba(99,102,241,0.5)] transition-shadow duration-300">
               <a href="https://calendly.com/contact-agence-cosmoweb/30min" target="_blank" rel="noopener noreferrer">
                 Réserver un appel
               </a>
