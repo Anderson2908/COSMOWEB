@@ -67,6 +67,10 @@ export default function SubscribePage() {
 
       const data = await response.json()
 
+      if (!response.ok) {
+        throw new Error(data.error || "Erreur serveur")
+      }
+
       if (data.url) {
         // Rediriger vers Stripe Checkout
         window.location.href = data.url
@@ -77,8 +81,9 @@ export default function SubscribePage() {
       } else {
         throw new Error("Erreur lors de la création de la session")
       }
-    } catch {
-      setError("Une erreur est survenue. Veuillez réessayer.")
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "Une erreur est survenue"
+      setError(errorMessage)
       setLoading(false)
     }
   }
