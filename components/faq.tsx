@@ -33,7 +33,7 @@ const faqData: FAQItem[] = [
   {
     question: "Puis-je modifier mon site moi-même ?",
     answer:
-      "Oui ! Selon le pack choisi, vous aurez accès à une interface d'administration simple pour modifier vos textes, images et contenus. Nous vous formons aux modifications de base de votre site lors de la livraison. Cependant, il est vivement recommandé d'opter pour notre formule de suivi qui vous assure une tranquillité d'esprit totale.",
+      "Nous vous formons aux modifications de base de votre site lors de la livraison. Cependant, il est vivement recommandé d'opter pour notre formule de suivi qui vous assure une tranquillité d'esprit totale.",
   },
   {
     question: "Faites-vous le référencement (SEO) ?",

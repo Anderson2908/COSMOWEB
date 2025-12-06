@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Check, Star, Zap, Crown } from "lucide-react"
+import { Check, Star, Zap, Crown, ArrowRight } from "lucide-react"
 import { useState } from "react"
 import { PackForm } from "./pack-form"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
@@ -199,9 +199,18 @@ export function Pricing() {
                   <span className="text-4xl font-bold text-white">19,99€</span>
                   <span className="text-gray-400">/mois</span>
                 </div>
-                <span className="inline-block bg-transparent border border-[#f59e0b] text-[#f59e0b] px-4 py-1.5 rounded-full text-sm font-medium">
+                <span className="inline-block bg-transparent border border-[#f59e0b] text-[#f59e0b] px-4 py-1.5 rounded-full text-sm font-medium mb-4">
                   Sans engagement
                 </span>
+                <Button
+                  asChild
+                  className="bg-[#6366f1] hover:bg-[#5558e3] text-white px-6 py-5 rounded-full font-semibold transition-all duration-300"
+                >
+                  <Link href="/subscribe" className="flex items-center gap-2">
+                    S&apos;abonner
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>
