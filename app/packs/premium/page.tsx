@@ -1,10 +1,13 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Check, Crown, ArrowLeft, Infinity, Sparkles, Shield, Phone, Mail, Zap } from "lucide-react"
+import { Check, Crown, ArrowLeft, Infinity, Sparkles, Shield, Phone, Mail, Zap, Headphones, Server, RefreshCw, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { PackForm } from "@/components/pack-form"
 import { useState, useEffect } from "react"
+
+// Lien de paiement Stripe pour l'abonnement
+const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/test_bJe4gB3xdg4h3cSfOx08g00"
 
 export default function PremiumPackPage() {
   const [showForm, setShowForm] = useState(false)
@@ -346,6 +349,95 @@ export default function PremiumPackPage() {
                 Code professionnel avec les meilleures pratiques de sécurité et 3 mois de suivi pour une tranquillité
                 totale.
               </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Subscription Section */}
+        <div className="mb-16 bg-gradient-to-br from-[#111827] to-[#0f172a] border border-[#f59e0b]/30 rounded-2xl p-8 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[#f59e0b]/5 rounded-full blur-3xl" />
+          <div className="relative">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
+              <div>
+                <div className="inline-block bg-[#f59e0b]/20 text-[#f59e0b] px-4 py-1.5 rounded-full text-sm font-semibold mb-4">
+                  💎 Option recommandée
+                </div>
+                <h2 className="text-3xl font-bold text-white mb-2">Maintenance & Sérénité</h2>
+                <p className="text-gray-400 max-w-xl">
+                  Prolongez la tranquillité après vos 3 mois de suivi inclus. On s'occupe de tout, vous vous concentrez sur votre activité.
+                </p>
+              </div>
+              <div className="text-center md:text-right">
+                <div className="flex items-baseline gap-1 justify-center md:justify-end">
+                  <span className="text-4xl font-bold text-white">19,99€</span>
+                  <span className="text-xl text-gray-400">/mois</span>
+                </div>
+                <span className="inline-block bg-transparent border border-[#f59e0b] text-[#f59e0b] px-3 py-1 rounded-full text-sm font-medium mt-2">
+                  Sans engagement
+                </span>
+              </div>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+              <div className="flex items-start gap-3">
+                <div className="bg-[#f59e0b]/20 rounded-lg p-2 flex-shrink-0">
+                  <Headphones className="size-5 text-[#f59e0b]" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-white text-sm">Support réactif</h4>
+                  <p className="text-xs text-gray-400">Réponse sous 24h</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="bg-[#f59e0b]/20 rounded-lg p-2 flex-shrink-0">
+                  <Zap className="size-5 text-[#f59e0b]" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-white text-sm">Corrections incluses</h4>
+                  <p className="text-xs text-gray-400">Bugs et ajustements</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="bg-[#f59e0b]/20 rounded-lg p-2 flex-shrink-0">
+                  <Server className="size-5 text-[#f59e0b]" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-white text-sm">Hébergement sécurisé</h4>
+                  <p className="text-xs text-gray-400">Serveurs performants</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="bg-[#f59e0b]/20 rounded-lg p-2 flex-shrink-0">
+                  <RefreshCw className="size-5 text-[#f59e0b]" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-white text-sm">Sauvegardes auto</h4>
+                  <p className="text-xs text-gray-400">Données protégées</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                asChild
+                size="lg"
+                className="bg-[#f59e0b] hover:bg-[#d97706] text-black font-semibold rounded-full px-8"
+              >
+                <a href={STRIPE_PAYMENT_LINK} className="flex items-center gap-2">
+                  Souscrire à l'abonnement
+                  <ArrowRight className="size-5" />
+                </a>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-[#f59e0b]/50 text-[#f59e0b] bg-transparent hover:bg-[#f59e0b]/10 rounded-full px-8"
+              >
+                <Link href="/subscribe">
+                  En savoir plus
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
