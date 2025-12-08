@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Twitter, Linkedin, Github, Mail, Phone, MapPin } from "lucide-react"
+import { Instagram, Linkedin, Github, Mail, Phone, MapPin } from "lucide-react"
 
 export function Footer() {
   const scrollToSection = (id: string) => {
@@ -27,7 +27,7 @@ export function Footer() {
                 href="#" 
                 className="size-10 rounded-full bg-[#1a1a2e] border border-[#2a2a4e] flex items-center justify-center text-gray-400 hover:text-white hover:border-[#6366f1] transition-colors"
               >
-                <Twitter className="size-5" />
+                <Instagram className="size-5" />
               </a>
               <a 
                 href="#" 
