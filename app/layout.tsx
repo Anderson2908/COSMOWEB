@@ -47,6 +47,19 @@ export default function RootLayout({
             gtag('config', 'AW-17784424843');
           `}
         </Script>
+        <Script id="crisp-chat" strategy="afterInteractive">
+          {`
+            window.$crisp=[];
+            window.CRISP_WEBSITE_ID="f95d74b0-7fac-44f6-ab47-c01d9222121b";
+            (function(){
+              d=document;
+              s=d.createElement("script");
+              s.src="https://client.crisp.chat/l.js";
+              s.async=1;
+              d.getElementsByTagName("head")[0].appendChild(s);
+            })();
+          `}
+        </Script>
       </head>
       <body className={`${_playfairDisplay.variable} font-sans antialiased relative`}>
         <CursorGlow />
