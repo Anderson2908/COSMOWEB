@@ -13,17 +13,17 @@ const projects = [
     link: "https://abonnement-cafe.justeatemps.com",
   },
   {
+    title: "Simulateur Fruits",
+    category: "Application web",
+    description: "Simulateur d'abonnement fruits professionnel pour Juste à Temps",
+    image: "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=400&h=300&fit=crop",
+    link: "https://abonnement-fruits.justeatemps.com",
+  },
+  {
     title: "Bistrot du Marché",
     category: "Restaurant",
     description: "Site avec réservation en ligne et menu digital",
     image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop",
-    link: "",
-  },
-  {
-    title: "Atelier Créatif",
-    category: "E-commerce",
-    description: "Boutique en ligne pour créations artisanales",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
     link: "",
   },
 ]
