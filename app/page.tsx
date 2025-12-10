@@ -6,6 +6,7 @@ import { Hero } from "@/components/hero"
 import { Features } from "@/components/features"
 import { Pricing } from "@/components/pricing"
 import { About } from "@/components/about"
+import { Testimonials } from "@/components/testimonials"
 import { ContactSection } from "@/components/contact-section"
 import { FAQ } from "@/components/faq"
 import { ProjectForm } from "@/components/project-form"
@@ -19,6 +20,7 @@ export default function Home() {
       <Navbar onOpenForm={() => setIsFormOpen(true)} />
       <Hero />
       <About />
+      <Testimonials />
       <Features />
       <Pricing />
       <ContactSection />
