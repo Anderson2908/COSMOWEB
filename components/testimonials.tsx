@@ -6,15 +6,15 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 
 const testimonials = [
   {
-    name: "Marie Dupont",
+    name: "Marie",
     role: "Photographe indépendante",
     content:
-      "Grâce à mon nouveau portfolio, j'ai doublé mes demandes de devis en 3 mois. Le design est exactement ce que je voulais !",
+      "Grâce à mon nouveau portfolio, j'ai doublé mes demandes de devis en 3 mois. C'est exactement ce que je voulais !",
     rating: 5,
     initials: "MD",
   },
   {
-    name: "Thomas Martin",
+    name: "Thomas",
     role: "Gérant de restaurant",
     content:
       "Notre site vitrine nous permet enfin de présenter notre carte et de prendre des réservations en ligne. Simple et efficace.",
@@ -22,36 +22,12 @@ const testimonials = [
     initials: "TM",
   },
   {
-    name: "Sophie Bernard",
+    name: "Sophie",
     role: "Créatrice de bijoux",
     content:
-      "Ma boutique en ligne est magnifique et facile à utiliser. Les clients adorent et mes ventes ont explosé !",
-    rating: 5,
+      "Ma boutique en ligne est magnifique et facile à utiliser. Le parcours client est agréable et mes ventes ont doublé !",
+    rating: 4,
     initials: "SB",
-  },
-  {
-    name: "Laurent Petit",
-    role: "Coach sportif",
-    content:
-      "Un site professionnel qui reflète parfaitement mon activité. Mes clients peuvent maintenant réserver leurs séances en ligne facilement.",
-    rating: 5,
-    initials: "LP",
-  },
-  {
-    name: "Claire Moreau",
-    role: "Fleuriste",
-    content:
-      "L'équipe a su comprendre mes besoins et créer un site qui met en valeur mes créations florales. Je recommande à 100% !",
-    rating: 5,
-    initials: "CM",
-  },
-  {
-    name: "Nicolas Durand",
-    role: "Artisan boulanger",
-    content:
-      "Enfin un site à la hauteur de notre savoir-faire artisanal. Les commandes en ligne ont boosté notre chiffre d'affaires.",
-    rating: 5,
-    initials: "ND",
   },
 ]
 
