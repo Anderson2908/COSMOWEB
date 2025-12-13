@@ -168,7 +168,7 @@ export function Pricing() {
                 {/* Christmas Badge */}
                 {pack.christmas && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10 flex gap-2">
-                    <span className="bg-gradient-to-r from-[#dc2626] to-[#b91c1c] text-white px-4 py-1.5 rounded-full text-sm font-semibold shadow-lg flex items-center gap-2">
+                    <span className="bg-gradient-to-r from-[#dc2626] to-[#b91c1c] text-white px-4 py-1.5 rounded-full text-sm font-semibold shadow-lg flex items-center justify-center gap-2">
                       <Snowflake className="size-4" />
                       Offre de Noël -10%
                       <Snowflake className="size-4" />
