@@ -97,10 +97,10 @@ export default function CGVPage() {
             </p>
             <ul className="list-disc list-inside space-y-2 text-gray-400">
               <li>
-                <strong className="text-white">Acompte :</strong> 50% du montant total à la signature du devis
+                <strong className="text-white">Acompte :</strong> 50% du montant total à la signature du devis (optionnel selon les projets et à la discrétion du Prestataire)
               </li>
               <li>
-                <strong className="text-white">Solde :</strong> 50% du montant total à la livraison du projet
+                <strong className="text-white">Solde :</strong> 50% restant ou 100% du montant total à la livraison du projet
               </li>
             </ul>
             <p className="text-gray-400 leading-relaxed mt-4">
