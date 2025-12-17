@@ -23,24 +23,24 @@ export function Footer() {
               Nous transformons vos idées en expériences digitales performantes. L'agence web partenaire de votre croissance.
             </p>
             <div className="flex space-x-3">
-              <a 
-                href="#" 
-                className="size-10 rounded-full bg-[#1a1a2e] border border-[#2a2a4e] flex items-center justify-center text-gray-400 hover:text-white hover:border-[#6366f1] transition-colors"
+              <span 
+                className="size-10 rounded-full bg-[#1a1a2e] border border-[#2a2a4e] flex items-center justify-center text-gray-500 cursor-default"
+                title="Instagram - Bientôt disponible"
               >
                 <Instagram className="size-5" />
-              </a>
-              <a 
-                href="#" 
-                className="size-10 rounded-full bg-[#1a1a2e] border border-[#2a2a4e] flex items-center justify-center text-gray-400 hover:text-white hover:border-[#6366f1] transition-colors"
+              </span>
+              <span 
+                className="size-10 rounded-full bg-[#1a1a2e] border border-[#2a2a4e] flex items-center justify-center text-gray-500 cursor-default"
+                title="LinkedIn - Bientôt disponible"
               >
                 <Linkedin className="size-5" />
-              </a>
-              <a 
-                href="#" 
-                className="size-10 rounded-full bg-[#1a1a2e] border border-[#2a2a4e] flex items-center justify-center text-gray-400 hover:text-white hover:border-[#6366f1] transition-colors"
+              </span>
+              <span 
+                className="size-10 rounded-full bg-[#1a1a2e] border border-[#2a2a4e] flex items-center justify-center text-gray-500 cursor-default"
+                title="GitHub - Bientôt disponible"
               >
                 <Github className="size-5" />
-              </a>
+              </span>
             </div>
           </div>
 
