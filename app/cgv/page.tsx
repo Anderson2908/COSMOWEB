@@ -35,7 +35,7 @@ export default function CGVPage() {
             <h2 className="text-2xl font-semibold text-white mb-4">1. Objet</h2>
             <p className="text-gray-400 leading-relaxed">
               Les présentes Conditions Générales de Vente (CGV) régissent les relations contractuelles entre COSMOWEB,
-              entreprise individuelle en cours d&apos;immatriculation, ci-après dénommée &quot;le Prestataire&quot;, et
+              micro-entreprise immatriculée sous le numéro SIRET 923 847 165 00014, ci-après dénommée &quot;le Prestataire&quot;, et
               toute personne physique ou morale, ci-après dénommée &quot;le Client&quot;, souhaitant bénéficier des services de
               création de sites web proposés par le Prestataire.
             </p>
@@ -270,6 +270,12 @@ export default function CGVPage() {
             <h2 className="text-2xl font-semibold text-white mb-4">19. Contact</h2>
             <div className="bg-[#111827]/80 border border-[#1f2937] p-6 rounded-xl space-y-2">
               <p className="text-white">Pour toute question concernant nos CGV, contactez-nous :</p>
+              <p className="text-white">
+                <strong className="text-[#a5b4fc]">Raison sociale :</strong> COSMOWEB
+              </p>
+              <p className="text-white">
+                <strong className="text-[#a5b4fc]">SIRET :</strong> 923 847 165 00014
+              </p>
               <p className="text-white">
                 <strong className="text-[#a5b4fc]">Email :</strong> contact-agence@cosmoweb.fr
               </p>
