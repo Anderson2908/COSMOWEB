@@ -47,7 +47,10 @@ export default function MentionsLegalesPage() {
                 <strong className="text-[#a5b4fc]">Raison sociale :</strong> COSMOWEB
               </p>
               <p className="text-white">
-                <strong className="text-[#a5b4fc]">Statut :</strong> Entreprise individuelle (en cours d&apos;immatriculation)
+                <strong className="text-[#a5b4fc]">Statut :</strong> Micro-entreprise
+              </p>
+              <p className="text-white">
+                <strong className="text-[#a5b4fc]">SIRET :</strong> 923 847 165 00014
               </p>
               <p className="text-white">
                 <strong className="text-[#a5b4fc]">Siège social :</strong> Paris, France
