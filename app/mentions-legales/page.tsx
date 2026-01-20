@@ -53,7 +53,7 @@ export default function MentionsLegalesPage() {
                 <strong className="text-[#a5b4fc]">SIRET :</strong> 923 847 165 00014
               </p>
               <p className="text-white">
-                <strong className="text-[#a5b4fc]">Siège social :</strong> Paris, France
+                <strong className="text-[#a5b4fc]">Siège social :</strong> Saint-Maur-des-Fossés, France
               </p>
               <p className="text-white">
                 <strong className="text-[#a5b4fc]">Téléphone :</strong> +33 6 50 77 08 33
